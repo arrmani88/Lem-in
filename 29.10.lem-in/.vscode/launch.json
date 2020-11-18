@@ -1,0 +1,39 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "(gdb) Home",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/home/arrmani/SWAAAP/27.10.lem-in/lem-in/a.out",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
+		},{
+			"name": "(lldb) 1337",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/Users/anel-bou/pro/29.10.lem-in/a.out",
+			"args": [],
+			"stopAtEntry": true,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"internalConsoleOptions": "openOnSessionStart",
+			"MIMode": "lldb"
+		},
+	]
+}
