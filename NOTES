@@ -1,0 +1,6 @@
+# error checking:
+	+the same link 2 times
+
+# n3teh i9aleb 3la chi room makaynach f liste **room 
+# env->room[x]->link had liste nfreei gha nodes ama stringat blach 7it
+	lpointer m affecti lih gha l'adresse men liste li fiha initial data
