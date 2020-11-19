@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:51:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/11 18:51:28 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/11/19 14:11:39 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		rooms_count(char *str)
 	if (str[i] == ' ' && ++spc)
 		;
 	if (str[++i] && ft_isdigit(str[i]) && ++wrd)
-		while (ft_isdigit(str[++i]))
+		while (str[++i] && ft_isdigit(str[i]))
 			;
 	if (str[i] == ' ' && ++spc)
 		;

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 18:34:56 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/16 12:00:47 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/11/19 13:43:56 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,12 @@ void	fill_link(t_env *env, char *line)
 	ft_strdel(&rm1);
 }
 
+void	set_antsnb(t_inp **inp, t_env *env)
+{
+	env->antsnb = ft_atoi((*inp)->line);
+	*inp = (*inp)->next;
+}
+
 int		save_input(t_env *env)
 {
 	t_inp	*ptr;
@@ -110,6 +116,7 @@ int		save_input(t_env *env)
 	env->room = (t_room **)malloc(sizeof(t_room *) * env->nbrooms);
 	ft_bzero((t_room **)env->room, sizeof(t_room *) * env->nbrooms);
 	ptr = env->inp;
+	set_antsnb(&ptr, env);
 	while (ptr && (msg = check_error(&ptr, &line)) > 0)
 	{
 		if (msg == ERROR)

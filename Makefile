@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/14 16:04:24 by anel-bou          #+#    #+#              #
-#    Updated: 2020/11/05 12:55:58 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/11/19 13:31:49 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,10 +99,10 @@ OBJ = 	gnl/get_next_line.o\
 		read_data/save_input.o\
 		read_data/check_error.o\
 		read_data/initialize_var.o\
-		bfs.o\
-		main.o\
-		test_print.o\
-		pathgen.o\
+		execution/bfs.o\
+		execution/main.o\
+		execution/test_print.o\
+		execution/pathgen.o\
 
 NAME = lem-in.a
 
@@ -127,5 +127,10 @@ clean :
 fclean : clean
 		make fclean -C libft/
 		rm -f $(NAME)
+
+#asppp
+khdem :
+		gcc -g execution/main.c lem-in.a && ./a.out
+#aspppp
 
 re : fclean all

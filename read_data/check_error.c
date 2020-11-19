@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:19:55 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/11 18:37:21 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/11/19 11:44:30 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		check_error(t_inp **inp, char **line)
 {
 	int msg;
 	int tmp;
+	
 	if (!((*inp)->line))
 		return (INP_END);
 	if (ft_strequ((*inp)->line, "##start"))

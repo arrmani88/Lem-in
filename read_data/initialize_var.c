@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 10:11:06 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/13 11:16:19 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/11/19 11:39:29 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	set_first_ch(t_env *env)
 
 void    initialize_var(t_env *env)
 {
+	env->antsnb = 0;
 	env->pthds = NULL;
 	env->iteration_nb = 1;
 	env->retry = 0;

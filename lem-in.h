@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/16 11:58:55 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/11/19 14:51:20 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct	s_room
 	int				y;
 	int				iterated;
 	int				childnb;
-	int				used;
+	int				used; /* asup */
 	int				full;
 	int				set_last;
 }				t_room;
@@ -84,6 +84,7 @@ typedef struct s_env
 	t_path		*pth;	 //16
 	t_inp		*inp;	 //16
 	char		*tmp;
+	int			antsnb;
 	int			iteration_nb;
 	int			nbrooms;
 	int			retry;
@@ -101,6 +102,7 @@ void    initialize_var(t_env *env);
 int		path_generator(t_env *env);
 void	delete_heads_rest(t_ptheads *ptr);
 void	delete_path_rest(t_path *ptr);
+void	set_antsnb(t_inp **inp, t_env *env);
 
 /*************** functions to test ******************/
 void	test_loop(t_env *env, char *name);
@@ -110,3 +112,10 @@ void	print_all_paths(t_env *env);
 /*************** functions to test ******************/
 
 #endif
+
+// # error checking:
+// 	+the same link 2 times
+
+// # n3teh i9aleb 3la chi room makaynach f liste **room 
+// # env->room[x]->link had liste nfreei gha nodes ama stringat blach 7it
+// 	lpointer m affecti lih gha l'adresse men liste li fiha initial data
