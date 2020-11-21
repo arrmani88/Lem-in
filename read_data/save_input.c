@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 18:34:56 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/19 13:43:56 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/11/21 12:45:07 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	fill_link(t_env *env, char *line)
 
 void	set_antsnb(t_inp **inp, t_env *env)
 {
+	while ((*inp)->line[0] == '#')
+		*inp = (*inp)->next;
 	env->antsnb = ft_atoi((*inp)->line);
 	*inp = (*inp)->next;
 }

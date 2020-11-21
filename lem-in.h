@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/19 14:51:20 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/11/21 09:37:01 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #define ROOM	2
 #define END		3
 #define	LINK	4
+#define COMMENT 7
 #define FIRST_CH 5
 #define LAST_CH	6
 
