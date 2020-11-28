@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lem-in.h"
+#include "../includes/lem-in.h"
 
 void test_loop(t_env *env, char *name)
 {
@@ -54,6 +54,8 @@ void print_all_paths(t_env *env)
 	while (pthead)
 	{
 		pth = pthead->path;
+		printf("[%d] ", pthead->ants);
+
 		while (pth)
 		{
 			printf("%s->", pth->room->name);

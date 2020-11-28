@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lem-in.h"
+#include "../includes/lem-in.h"
 
 t_link *get_link_from(t_room *room1, t_room *room2)
 {
@@ -121,30 +121,6 @@ int path_generator(t_env *env)
 		rm = lnk->room;
 	}
 	delete_path_rest(env->pth);
-	print_path(papr);
+	// print_path(papr);
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// env->start->iterated = env->iteration_nb; /* jarrab supp */ V1
-// env->start->iterated = env->iteration_nb; V2
-//  && env->lnk->room != env->start && lnk->room != env->end V3
-// env->lnk->room == env->end ? lnk->flow = 1 : 0; V4
-		// printf("[rm=%s>lnk=%s#%d]",rm->parent->name, lnk->room->name, lnk->flow); V5
