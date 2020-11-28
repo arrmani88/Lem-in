@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/21 13:34:44 by youarzaz          #+#    #+#              #
-#    Updated: 2020/11/21 13:34:46 by youarzaz         ###   ########.fr        #
+#    Updated: 2020/11/28 09:24:39 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,13 @@ LIB = libft/libft.a
 all :           $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIRPS)/%.c $(HEADERS)
-	@gcc $(CFLAGS) -c $< -I includes/ -o $@
+	@gcc -g $(CFLAGS) -c $< -I includes/ -o $@
 
 $(OBJDIR)/%.o: $(SRCDIREXE)/%.c $(HEADERS)
-	@gcc $(CFLAGS) -c $< -I includes/ -o $@
+	@gcc -g $(CFLAGS) -c $< -I includes/ -o $@
 
 $(OBJDIR)/%.o: $(SRCDIRGNL)/%.c $(HEADERS)
-	@gcc $(CFLAGS) -c $< -I gnl/ -o $@
+	@gcc -g $(CFLAGS) -c $< -I gnl/ -o $@
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
@@ -44,7 +44,7 @@ $(LIB):
 	@make -C libft
 
 $(NAME) : $(LIB) $(OBJDIR) $(OBJSPS) $(OBJSEXE) $(OBJSGNL)
-	@gcc $(CFLAGS) $(OBJSPS) $(OBJSEXE) $(OBJSGNL) $(LIB) -o $(NAME)
+	@gcc -g $(CFLAGS) $(OBJSPS) $(OBJSEXE) $(OBJSGNL) $(LIB) -o $(NAME)
 	@echo "MAKEFILE LEM-IN ...[OK]"
 clean :
 	@make clean -C libft
