@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/29 13:54:59 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/01 14:16:59 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ t_path	*select_next_path(t_env *env)
 	{
 		if (!env->pthds->next)
 		{
-			env->pthds = (t_ptheads *)malloc(sizeof(t_ptheads));
-			env->pthds->next = NULL;
-			env->pthds->path = (t_path *)malloc(sizeof(t_path));
-			env->pthds->path->next = NULL;
+			env->pthds->next = (t_ptheads *)malloc(sizeof(t_ptheads));
+			env->pthds->next->next = NULL;
+			env->pthds->next->path = (t_path *)malloc(sizeof(t_path));
+			env->pthds->next->path->next = NULL;
 		}
 		env->pthds = env->pthds->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:50:09 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/30 14:41:47 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/01 14:13:31 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,43 @@ void	liberate_memory()
 void	delete_heads_rest(t_ptheads **pthds)
 {
 	t_ptheads	**ptr;
-	t_ptheads	*tmp;
-	t_path		*path;
-	t_path		*tmp2;
+	t_ptheads	**tmp;
+	
+	t_path		**path;
+	t_path		**tmp2;
 
-	ptr = pthds;
-	if (!(*ptr))
-		return ;
-	*ptr = (*ptr)->next;
+	ptr = &((*pthds)->next);
 	while (*ptr)
 	{
-		path = (*ptr)->path;
-		while (path)
+	
+		// printf("dakhla\n");
+		path = &((*ptr)->path);
+		while (*path)
 		{
-			tmp2 = path->next;
+			// printf("address :%p::::::::::::::%s\n", *path, (*path)->room->name);
+			tmp2 = &((*path)->next);
 			ft_memdel((void **)path);
+			// printf("address :%p\n", *path);
 			path = tmp2;
 		}
-		tmp = (*ptr)->next;
+		// printf("lkharja\n");	
+		
+		tmp = &((*ptr)->next);
 		ft_memdel((void **)ptr);
-		*ptr = tmp;
+		ptr = tmp;
 	}
 }
 
 void	delete_path_rest(t_path *ptr)
 {
-	t_path *tmp;
+	t_path **tmp;
+	t_path **path;
 
-	ptr = ptr->next;
-	while (ptr)
+	path = &(ptr->next);
+	while (*path)
 	{
-		tmp = ptr->next;
-		ft_memdel((void **)ptr);
-		ptr = tmp;
+		tmp = &((*path)->next);
+		ft_memdel((void **)path);
+		path = tmp;
 	}
 }

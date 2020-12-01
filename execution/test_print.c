@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:19:17 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/19 13:30:46 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/01 14:11:01 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void print_current_queue(t_queue *qu)
 	t_queue *p;
 
 	p = qu;
-
 	while (p)
 	{
 		printf("-->%s", p->room->name);
@@ -75,3 +74,31 @@ void print_path(t_path *path)
 	}
 	printf("\n");
 }
+
+/*
+void	delete_heads_rest(t_ptheads **pthds)
+{
+	t_ptheads	**ptr;
+	t_ptheads	**tmp;
+	t_path		*path;
+	t_path		*tmp2;
+
+	// ptr = pthds;
+	// if (!(*ptr))
+	// 	return ;
+	ptr = &(*pthds)->next;
+	while (*ptr)
+	{
+		// path = (*ptr)->path;
+		// while (path)
+		// {
+		// 	tmp2 = path->next;
+		// 	ft_memdel((void **)&path);
+		// 	path = tmp2;
+		// }
+		tmp = &(*ptr)->next;
+		ft_memdel((void **)ptr);
+		ptr = tmp;
+	}
+}
+*/
