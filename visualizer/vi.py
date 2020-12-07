@@ -1,18 +1,36 @@
 import networkx as nx
 import matplotlib.pyplot as ppt
 
+def     room_or_link(line):
+	for c in line:
+		if c == ' ':
+			return 'r'
+		elif c == '-':
+			return 'l'
+
+def     append_to_edges(line, edges):
+	lst = line.split('-')
+	edges.append((lst[0], lst[1]))
+
+	return
+
+edges = []
+fd = open(0, "r")
+lines = fd.readlines()
+for line in lines:
+	if line[0] != '#':
+		var = room_or_link(line)
+		if var == 'l':
+			append_to_edges(line[0:-1], edges)
+
+
 g = nx.Graph()
-
-g.add_node(1)
-g.add_node(2)
-g.add_node(3)
-g.add_node(4)
-g.add_node(5)
-g.add_node(0)
-g.add_edges_from([(1, 2), (1, 3), (2, 4), (3,5), (5, 0), (4, 0)])
-
-print(nx.info(g))
-
-nx.draw(g)
-
+g.add_edges_from(edges)
+print(edges)
+# print(nx.info(g))
+nx.draw(g, with_labels="True")
 ppt.show()
+
+
+
+
