@@ -14,7 +14,7 @@
 
 void	search4paths(t_env *env, int follow)
 {
-	printf("********************************\n");
+	// printf("********************************\n");
 	while (bfs(env, follow))
 		;
 	if (env->retry && !follow)
