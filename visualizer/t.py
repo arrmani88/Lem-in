@@ -12,5 +12,6 @@ df
 G=nx.from_pandas_edgelist(df, 'from', 'to')
  
 # Graph with Custom nodes:
-nx.draw(G, with_labels=True, node_size=1500, node_color="skyblue", node_shape="s", alpha=0.5, linewidths=40)
+nx.draw(G, with_labels=True, node_size=1500, node_color="skyblue", 
+node_shape="s", alpha=0.5, linewidths=40)
 plt.show()

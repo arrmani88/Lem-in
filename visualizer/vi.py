@@ -1,5 +1,5 @@
 import networkx as nx
-import matplotlib.pyplot as ppt
+import matplotlib.pyplot as plt
 import string
 
 def     room_or_link(line):
@@ -29,11 +29,17 @@ for line in lines:
 		elif var == 'l':
 			append_to_edges(line[0:-1], edges)
 
-
 g = nx.Graph()
 g.add_edges_from(edges)
-nx.draw(g, pos=nodes, with_labels="True", node_size=500)
-ppt.show()
+plt.figure(1,figsize=(30, 30))
+# nx.draw(g, pos=None, with_labels="True", node_size=500)
+nx.draw(g, pos=nodes, with_labels=True, node_size=700,
+node_color="skyblue", node_shape="s", alpha=0.5, linewidths=4,
+font_size=10, font_color="grey", font_weight="bold", width=2, edge_color="grey")
+
+# nx.draw(g, with_labels=True, node_size=700, node_color="skyblue", 
+# node_shape="s", alpha=0.5, linewidths=10)
+plt.show()
 
 
 
