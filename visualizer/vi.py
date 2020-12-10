@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    vi.py                                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arrmani88 <arrmani88@student.42.fr>        +#+  +:+       +#+         #
+#    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/12/06 14:42:43 by arrmani88         #+#    #+#              #
-#    Updated: 2020/12/10 14:54:44 by arrmani88        ###   ########.fr        #
+#    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
+#    Updated: 2020/12/10 19:09:37 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,11 @@ def		append_to_nodes(line, nodes):
 	nodes[tmp[0]] = (int(tmp[1]), int(tmp[2]))
 
 def		add_nodes_edges(g):
-	# sqr = imread('visualizer/img/sqr.png')
-	# g.add_node("1", image=sqr)
-	# g.add_node("2", image=sqr)
 	g.add_edges_from(edges)
 
 edges = []
 nodes = {}
-fd = open("maaps/dth", "r")
+fd = open("maaps/m1", "r")
 lines = fd.readlines()
 for line in lines:
 	if line[0] != '#':
@@ -61,8 +58,6 @@ add_nodes_edges(g)
 nx.draw(g, pos=nodes, ax=g_ax, with_labels=True, node_size=500, node_color="#B78356",
 node_shape="8", linewidths=30, font_size=20, font_color="#33190a",
 font_weight="bold", width=5, edge_color="#33190a")
-# g_ax.collections[0].set_edgecolor("#ae794d") 
 
 plt.show()
-# linewidths=20,
-#G.add_node(4, s="v", b=5)
+#G.add_node(4, s="v", b=5) #s= specific shape for each node

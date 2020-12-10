@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    add_icon.py                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arrmani88 <arrmani88@student.42.fr>        +#+  +:+       +#+         #
+#    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/12/09 14:42:39 by arrmani88         #+#    #+#              #
-#    Updated: 2020/12/09 15:00:45 by arrmani88        ###   ########.fr        #
+#    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
+#    Updated: 2020/12/10 18:33:25 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ def     add_icon(g, nodes):
     imsize = 0.1 # this is the image size
     for n in g.nodes():
         (x,y) = nodes[n]
-        xx,yy = transax((x,y)) # figure coordinates
-        xa,ya = transfg((xx,yy)) # axes coordinates
+        xx,yy = transax((x,y))
+        xa,ya = transfg((xx,yy))
         a = plt.axes([xa-imsize/2.0,ya-imsize/2.0, imsize, imsize])
         a.imshow(img)
         a.axis('off')
