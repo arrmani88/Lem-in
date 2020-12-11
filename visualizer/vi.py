@@ -6,28 +6,30 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/10 22:36:08 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/11 17:46:53 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import networkx as nx
 import matplotlib.pyplot as plt
-import matplotlib.image as mtimg
 from matplotlib.pyplot import imread
+from class_ant import *
 from add_icon import *
 
 def     room_or_link(line):
 	for c in line:
-		if c == ' ':
+		if c == 'L':
+			return 'A'
+		elif c == ' ':
 			return 'r'
 		elif c == '-':
 			return 'l'
 
-def     append_to_edges(line, edges):
+def     append_edge(line, edges):
 	tmp = line.split('-')
 	edges.append((tmp[0], tmp[1]))
 
-def		append_to_nodes(line, nodes):
+def		append_node(line, nodes):
 	tmp = line.split(' ')
 	nodes[tmp[0]] = (int(tmp[1]), int(tmp[2]))
 
@@ -36,17 +38,22 @@ def		add_nodes_edges(g):
 
 edges = []
 nodes = {}
-fd = open("maaps/m1", "r")
+ants = {}
+phase = 0
+fd = open("out", "r")
 lines = fd.readlines()
 for line in lines:
 	if line[0] != '#':
 		var = room_or_link(line)
 		if var == 'r':
-			append_to_nodes(line[0:-1], nodes)
+			append_node(line[0:-1], nodes)
 		elif var == 'l':
-			append_to_edges(line[0:-1], edges)
+			append_edge(line[0:-1], edges)
+		elif var == 'A':
+			phase += 1
+			set_ant(line[0:-1], ants, phase)
 #1920px, 1080px, 96x96dpi = 20inc, 11.25inc
-
+exit()
 g = nx.Graph()
 plt.figure(figsize=(20, 11.25))
 
