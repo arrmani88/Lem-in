@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/11 22:05:52 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/12 01:15:57 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,12 +54,6 @@ for line in lines:
 			phase += 1
 			set_ant(line[0:-1], ants, phase)
 #1920px, 1080px, 96x96dpi = 20inc, 11.25inc
-
-i = 1
-for i in range(1, 6):
-	print("name=", i, " path=", ants[i].path, " phase=", ants[i].start_phase, sep='')
-	print()
-exit()
 
 g = nx.Graph()
 plt.figure(figsize=(20, 11.25))
