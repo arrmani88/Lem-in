@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 13:55:55 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/12 14:04:36 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/13 15:30:18 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,10 @@ def		append_node(line, nodes):
 def		add_nodes_edges(g, edges):
 	g.add_edges_from(edges)
 
-def	parse_data(lines, nodes, edges, ants):
+def	parse_data(nodes, edges, ants):
 	phase = 0
+	fd = open("out", "r")
+	lines = fd.readlines()
 	for line in lines:
 		if line[0] != '#':
 			var = room_or_link(line)
