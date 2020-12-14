@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 13:55:55 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/13 15:30:18 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/13 18:14:02 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ def		add_nodes_edges(g, edges):
 
 def	parse_data(nodes, edges, ants):
 	phase = 0
-	fd = open("out", "r")
+	fd = open("maaps/out", "r")
 	lines = fd.readlines()
 	for line in lines:
 		if line[0] != '#':
