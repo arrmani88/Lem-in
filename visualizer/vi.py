@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/15 01:24:35 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/15 15:35:45 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,14 @@ import matplotlib.animation as animation
 edges = []
 nodes = {}
 ants = []
-imglst = []
+# imglst = []
 ants.append(0)
 phases = parse_data(nodes, edges, ants)
 
 fig = plt.figure(figsize=(20, 11.25))
+# fig = plt.figure(figsize=(10, 5.62))
 
-show_bg_img()
+# show_bg_img()
 
 g = nx.Graph()
 gr_ax = plt.axes([0.035, 0.22, 0.92, 0.65])
@@ -38,8 +39,10 @@ font_color="#33190a", font_weight="bold", width=5, edge_color="#33190a")
 transax = gr_ax.transData.transform
 transfg = fig.transFigure.inverted().transform
 
-imglst = setAnimationList(transax, transfg, ants, nodes)
+# imglst = setAnimationList(transax, transfg, ants, nodes)
+imglst = group_Step(transax, transfg, ants, nodes, 1)
+# imglst = oneAntStep((0, 4), (2, 2), transax, transfg, imread("visualizer/img/ant.png"))
 
-anim = animation.ArtistAnimation(fig, imglst, interval=400, blit=False, repeat=False)
-
+print()
+anim = animation.ArtistAnimation(fig, imglst, interval=200, repeat=False)
 plt.show()

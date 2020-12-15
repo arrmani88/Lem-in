@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/15 01:49:31 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/15 15:53:09 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ def     setAnimationList(transax, transfg, ants, nodes):
 	images_lst = []
 	while (grp_stp := group_Step(transax, transfg, ants, nodes, phase)) != -1:
 		images_lst.append([grp_stp])
+		print()
 		phase += 1
 	return images_lst
 
@@ -51,14 +52,14 @@ def     group_Step(transax, transfg, ants, nodes, phase):
 			while p < len(pth) and pth[p] == '#':
 				p += 1
 			if p + 1 < len(pth): # or p == len(pth):
-				print_debug(pth[p], pth[p+1], i)
+				# print_debug(pth[p], pth[p+1], i)
 				n1 = getRoomCoordinates(pth[p], nodes)
 				if p != 0 or (p == 0 and ants[i].start_phase == '#' ):
 					ants[i].deleteRoomFromPath(p)
 					n2 = getRoomCoordinates(pth[p + 1], nodes)
 				elif p == 0:
 					n2 = n1
-					n1 = (0, 0)
+					n1 = (0, 4)
 				groupStep.append(oneAntStep(n1, n2, transax, transfg, ant_img))
 			if ants[i].start_phase == phase:
 				ants[i].setAsStarted()
@@ -68,9 +69,12 @@ def     group_Step(transax, transfg, ants, nodes, phase):
 
 def     oneAntStep(n1, n2, transax, transfg, ant_img):
 	imsize = 0.1
-	for (x, y) in zip(np.linspace(n1[0], n1[1], 10, endpoint=True), np.linspace(n2[0], n2[1], 10, endpoint=True)):
+	oneMove = []
+	for (x, y) in zip(np.linspace(n1[0], n2[0], 4, endpoint=True), np.linspace(n1[1], n2[1], 4, endpoint=True)):
 		xa, ya = convertData(x, y, transax, transfg)
 		a = plt.axes([xa-imsize/2.0,ya-imsize/2.0, imsize, imsize])
 		a.axis('off')
-		oneMove = a.imshow(ant_img, animated=True)
+		oneMove.append([a.imshow(ant_img, animated=True)])
+		print(oneMove)
+	print()
 	return oneMove
