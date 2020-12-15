@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 13:55:55 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/13 18:14:02 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/14 21:16:56 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,4 +46,4 @@ def	parse_data(nodes, edges, ants):
 			elif var == 'A':
 				phase += 1
 				set_ant(line[0:-1], ants, phase)
-	
+	return phase

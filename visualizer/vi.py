@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/14 21:14:15 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/15 01:24:35 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ nodes = {}
 ants = []
 imglst = []
 ants.append(0)
-parse_data(nodes, edges, ants)
+phases = parse_data(nodes, edges, ants)
 
 fig = plt.figure(figsize=(20, 11.25))
 
@@ -38,7 +38,7 @@ font_color="#33190a", font_weight="bold", width=5, edge_color="#33190a")
 transax = gr_ax.transData.transform
 transfg = fig.transFigure.inverted().transform
 
-imglst = setAnimationList(transax, transfg, imglst)
+imglst = setAnimationList(transax, transfg, ants, nodes)
 
 anim = animation.ArtistAnimation(fig, imglst, interval=400, blit=False, repeat=False)
 

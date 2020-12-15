@@ -6,17 +6,14 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/14 21:04:49 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/15 01:25:33 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-import networkx as nx
 import matplotlib.pyplot as plt
-import matplotlib.image as mtimg
 from matplotlib.pyplot import imread
-from matplotlib.offsetbox import OffsetImage, AnnotationBbox
-import matplotlib.image as mpimg
 import numpy as np
+from class_ant import *
 
 def		show_bg_img():
 	bgimg = imread("visualizer/img/bgimg2.jpg")
@@ -28,12 +25,43 @@ def		convertData(x, y, transax, transfg):
 	xa,ya = transfg((xx,yy))
 	return xa, ya
 
-def     setAnimationList(transax, transfg, imglst):
-	ant_img = imread("visualizer/img/ant.png")
-	moveOneAnt(transax, transfg, ant_img)
-	return 1
+def		getRoomCoordinates(room, nodes):
+	return (nodes[room])
 
-def     moveOneAnt(n1, n2, transax, transfg, ant_img):
+def     setAnimationList(transax, transfg, ants, nodes):
+	phase = 1
+	images_lst = []
+	while (grp_stp := group_Step(transax, transfg, ants, nodes, phase)) != -1:
+		images_lst.append([grp_stp])
+		phase += 1
+	return images_lst
+
+def     group_Step(transax, transfg, ants, nodes, phase):
+	groupStep = []
+	n1 = (-1, -1)
+	ant_img = imread("visualizer/img/ant.png")
+	for i in range(1, len(ants)):
+		if ants[i].start_phase == phase or ants[i].start_phase == '#':
+			if ants[i].start_phase == phase:
+				ants[i].setAsStarted()
+			p = 0
+			pth = ants[i].path
+			while p < len(pth) and pth[p] == '#':
+				p += 1
+			if p + 1 < len(pth): # or p == len(pth):
+				n1 = getRoomCoordinates(pth[p], nodes)
+				if p != 0:
+					ants[i].deleteRoomFromPath(p)
+					n2 = getRoomCoordinates(pth[p + 1], nodes)
+				elif p == 0:
+					n2 = n1
+					n1 = (0, 0)
+				groupStep.append(oneAntStep(n1, n2, transax, transfg, ant_img))
+	if n1 == (-1, -1):
+		return (-1)
+	return groupStep
+
+def     oneAntStep(n1, n2, transax, transfg, ant_img):
 	imsize = 0.1
 	for (x, y) in zip(np.linspace(n1[0], n1[1], 10, endpoint=True), np.linspace(n2[0], n2[1], 10, endpoint=True)):
 		xa, ya = convertData(x, y, transax, transfg)
