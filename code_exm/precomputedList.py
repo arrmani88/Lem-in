@@ -21,6 +21,6 @@ for i in range(60):
     ims.append([im])
 
 ani = animation.ArtistAnimation(fig, ims,
-interval=50, blit=True, repeat_delay=1000)
+interval=10, blit=True, repeat_delay=1000)
 
 plt.show()
