@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/15 01:25:33 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/15 01:49:31 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,10 @@ def		convertData(x, y, transax, transfg):
 	xa,ya = transfg((xx,yy))
 	return xa, ya
 
+def	print_debug(n1, n2, i):
+	print("ant=", i, " from(", n1,  ") to (", n2, ")", sep='')
+
+
 def		getRoomCoordinates(room, nodes):
 	return (nodes[room])
 
@@ -42,21 +46,22 @@ def     group_Step(transax, transfg, ants, nodes, phase):
 	ant_img = imread("visualizer/img/ant.png")
 	for i in range(1, len(ants)):
 		if ants[i].start_phase == phase or ants[i].start_phase == '#':
-			if ants[i].start_phase == phase:
-				ants[i].setAsStarted()
 			p = 0
 			pth = ants[i].path
 			while p < len(pth) and pth[p] == '#':
 				p += 1
 			if p + 1 < len(pth): # or p == len(pth):
+				print_debug(pth[p], pth[p+1], i)
 				n1 = getRoomCoordinates(pth[p], nodes)
-				if p != 0:
+				if p != 0 or (p == 0 and ants[i].start_phase == '#' ):
 					ants[i].deleteRoomFromPath(p)
 					n2 = getRoomCoordinates(pth[p + 1], nodes)
 				elif p == 0:
 					n2 = n1
 					n1 = (0, 0)
 				groupStep.append(oneAntStep(n1, n2, transax, transfg, ant_img))
+			if ants[i].start_phase == phase:
+				ants[i].setAsStarted()
 	if n1 == (-1, -1):
 		return (-1)
 	return groupStep
