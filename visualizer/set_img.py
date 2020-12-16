@@ -16,7 +16,7 @@ import numpy as np
 from class_ant import *
 
 def		show_bg_img():
-	bgimg = imread("visualizer/img/bgimg2.jpg")
+	bgimg = imread("img/bgimg2.jpg")
 	im_ax = plt.axes([0, 0, 1, 1])
 	im_ax.imshow(bgimg, aspect='auto')
 
@@ -27,7 +27,6 @@ def		convertData(x, y, transax, transfg):
 
 def	print_debug(n1, n2, i):
 	print("ant=", i, " from(", n1,  ") to (", n2, ")", sep='')
-
 
 def		getRoomCoordinates(room, nodes):
 	return (nodes[room])
@@ -44,7 +43,7 @@ def     setAnimationList(transax, transfg, ants, nodes):
 def     group_Step(transax, transfg, ants, nodes, phase):
 	groupStep = []
 	n1 = (-1, -1)
-	ant_img = imread("visualizer/img/ant.png")
+	ant_img = imread("img/ant.png")
 	for i in range(1, len(ants)):
 		if ants[i].start_phase == phase or ants[i].start_phase == '#':
 			p = 0
@@ -70,11 +69,10 @@ def     group_Step(transax, transfg, ants, nodes, phase):
 def     oneAntStep(n1, n2, transax, transfg, ant_img):
 	imsize = 0.1
 	oneMove = []
-	for (x, y) in zip(np.linspace(n1[0], n2[0], 30, endpoint=True), np.linspace(n1[1], n2[1], 30, endpoint=True)):
+	gnr = 4
+	for (x, y) in zip(np.linspace(n1[0], n2[0], gnr, endpoint=True), np.linspace(n1[1], n2[1], gnr, endpoint=True)):
 		xa, ya = convertData(x, y, transax, transfg)
 		a = plt.axes([xa-imsize/2.0,ya-imsize/2.0, imsize, imsize])
 		a.axis('off')
-		oneMove.append([a.imshow(ant_img, animated=True)])
-		# print(oneMove)
-	print()
+		oneMove.append(a.imshow(ant_img, animated=True))
 	return oneMove

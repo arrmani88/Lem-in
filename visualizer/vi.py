@@ -23,12 +23,12 @@ nodes = {}
 ants = []
 # imglst = []
 ants.append(0)
-phases = parse_data(nodes, edges, ants)
+total_phases = parse_data(nodes, edges, ants)
 
 # fig = plt.figure(figsize=(20, 11.25))
 fig = plt.figure(figsize=(10, 5.62))
 
-show_bg_img()
+# show_bg_img()
 
 g = nx.Graph()
 gr_ax = plt.axes([0.035, 0.22, 0.92, 0.65])
@@ -40,10 +40,10 @@ transax = gr_ax.transData.transform
 transfg = fig.transFigure.inverted().transform
 
 # imglst = setAnimationList(transax, transfg, ants, nodes)
-# imglst = group_Step(transax, transfg, ants, nodes, 1)
-imglst = oneAntStep((0, 0), (0, 10), transax, transfg, imread("visualizer/img/ant.png"))
+imglst = group_Step(transax, transfg, ants, nodes, 1)
+# imglst = oneAntStep((0, 0), (0, 4), transax, transfg, imread("img/ant.png"))
 
-print()
-anim = animation.ArtistAnimation(fig, imglst, interval=60, repeat=False)
-anim.save('basic_animation.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
+print(imglst)
+anim = animation.ArtistAnimation(fig, imglst, interval=1, repeat=False)
+# anim.save('Lem-in.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
 plt.show()

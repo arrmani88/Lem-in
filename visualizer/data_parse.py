@@ -32,6 +32,9 @@ def		append_node(line, nodes):
 def		add_nodes_edges(g, edges):
 	g.add_edges_from(edges)
 
+# def 	translatePath2Coordinates(ants, nodes):
+    
+
 def	parse_data(nodes, edges, ants):
 	phase = 0
 	fd = open("maaps/out", "r")
@@ -46,4 +49,5 @@ def	parse_data(nodes, edges, ants):
 			elif var == 'A':
 				phase += 1
 				set_ant(line[0:-1], ants, phase)
+	# translatePath2Coordinates(ants, nodes)
 	return phase

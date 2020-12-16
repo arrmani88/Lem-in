@@ -16,12 +16,15 @@ class Ant:
 	def __init__(self, start_phase):
 		self.start_phase = start_phase
 		self.path = []
+		self.coor = []
 	def	append_room(self, name):
 		self.path.append(name)
 	def setAsStarted(self):
 		self.start_phase = '#'
 	def	deleteRoomFromPath(self, i):
 		self.path[i] = '#'
+	def	extend_coor(self, lst):
+    	self.coor.extend(lst)
 
 def	Fill_ants_list(ants, antnb, room, phase):
 	if antnb > len(ants) - 1:
