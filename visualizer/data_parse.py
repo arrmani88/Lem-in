@@ -50,4 +50,5 @@ def	parse_data(nodes, edges, ants):
 				phase += 1
 				set_ant(line[0:-1], ants, phase)
 	# translatePath2Coordinates(ants, nodes)
+	
 	return phase
