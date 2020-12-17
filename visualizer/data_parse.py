@@ -13,10 +13,10 @@
 from class_ant import *
 
 def     room_or_link(line):
+	if line[0] == 'L':
+		return 'A'
 	for c in line:
-		if c == 'L':
-			return 'A'
-		elif c == ' ':
+		if c == ' ':
 			return 'r'
 		elif c == '-':
 			return 'l'
