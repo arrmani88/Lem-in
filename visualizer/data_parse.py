@@ -3,14 +3,16 @@
 #                                                         :::      ::::::::    #
 #    data_parse.py                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
+#    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 13:55:55 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/14 21:16:56 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/19 20:57:53 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+import numpy as np
 from class_ant import *
+from set_img import *
 
 def     room_or_link(line):
 	if line[0] == 'L':
@@ -32,8 +34,17 @@ def		append_node(line, nodes):
 def		add_nodes_edges(g, edges):
 	g.add_edges_from(edges)
 
-# def 	translatePath2Coordinates(ants, nodes):
-    
+def		pointsBtwn2Rooms(x1, y1, room2, ant, nodes):
+	(x, y) = getRoomCoordinates(room2, nodes)
+	xlst = np.linspace(x1, x, 30, endpoint=True)
+	ylst = np.linspace(y1, y, 30, endpoint=True)
+	ant.extend_coor(xlst, ylst)
+
+def 	translatePath2Coordinates(ants, nodes, start, gnr):
+	for i in range(1, len(ants)):
+		pointsBtwn2Rooms(start[0], start[1], ants[i].path[0], ants[i], nodes)
+		for room in ants[i].path:
+			pointsBtwn2Rooms(ants[i].xcoor[-1], ants[i].ycoor[-1], room, ants[i], nodes)
 
 def	parse_data(nodes, edges, ants):
 	phase = 0
@@ -48,7 +59,6 @@ def	parse_data(nodes, edges, ants):
 				append_edge(line[0:-1], edges)
 			elif var == 'A':
 				phase += 1
-				set_ant(line[0:-1], ants, phase)
-	# translatePath2Coordinates(ants, nodes)
-	
+				totalAnts = set_ant(line[0:-1], ants, phase)
+	translatePath2Coordinates(ants, nodes, (0, 4), 3)
 	return phase
