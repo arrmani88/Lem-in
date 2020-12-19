@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/19 13:02:35 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/19 14:08:59 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ def     group_Step(transax, transfg, ants, nodes, phase):
 			pth = ants[i].path
 			while p < len(pth) and pth[p] == '#':
 				p += 1
-			if p + 1 < len(pth): # or p == len(pth):
+			if p + 1 < len(pth):# or p == len(pth):
 				# print_debug(pth[p], pth[p+1], i)
 				n1 = getRoomCoordinates(pth[p], nodes)
 				if p != 0 or (p == 0 and ants[i].start_phase == '#' ):
@@ -69,7 +69,7 @@ def     group_Step(transax, transfg, ants, nodes, phase):
 def     oneAntStep(n1, n2, transax, transfg, ant_img):
 	imsize = 0.1
 	oneMove = []
-	gnr = 4
+	gnr = 3
 	for (x, y) in zip(np.linspace(n1[0], n2[0], gnr, endpoint=True), np.linspace(n1[1], n2[1], gnr, endpoint=True)):
 		xa, ya = convertData(x, y, transax, transfg)
 		a = plt.axes([xa-imsize/2.0,ya-imsize/2.0, imsize, imsize])
