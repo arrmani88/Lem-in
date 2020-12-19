@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    vi.py                                              :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
+#    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/15 16:53:29 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/19 13:17:55 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ ants = []
 ants.append(0)
 total_phases = parse_data(nodes, edges, ants)
 
-# fig = plt.figure(figsize=(20, 11.25))
-fig = plt.figure(figsize=(10, 5.62))
+fig = plt.figure(figsize=(20, 11.25))
+# fig = plt.figure(figsize=(10, 5.62))
 
-# show_bg_img()
+show_bg_img()
 
 g = nx.Graph()
 gr_ax = plt.axes([0.035, 0.22, 0.92, 0.65])
@@ -46,4 +46,5 @@ imglst = group_Step(transax, transfg, ants, nodes, 1)
 print(imglst)
 anim = animation.ArtistAnimation(fig, imglst, interval=1, repeat=False)
 # anim.save('Lem-in.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
+
 plt.show()

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    class_ant.py                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anel-bou <anel-bou@student.1337.ma>        +#+  +:+       +#+         #
+#    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 14:00:26 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/15 00:19:08 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/19 12:59:38 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ class Ant:
 	def	deleteRoomFromPath(self, i):
 		self.path[i] = '#'
 	def	extend_coor(self, lst):
-    	self.coor.extend(lst)
+		self.coor.extend(lst)
 
 def	Fill_ants_list(ants, antnb, room, phase):
 	if antnb > len(ants) - 1:
