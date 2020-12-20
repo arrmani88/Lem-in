@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/20 13:38:23 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 14:56:35 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ def	distributor(ants, transax, transfg, ant_img):
 	startedAnts = 0
 	frame_nb = 0
 	while startedAnts or frame_nb == 0:
-		phase = int(frame_nb / 3)
+		phase = int(frame_nb / 10)
 
 		i = 0
 		for i in range(1, len(ants)):
@@ -115,14 +115,13 @@ def	distributor(ants, transax, transfg, ant_img):
 				while c < coorlen and xcoor[c] == '#':
 					c += 1
 				if c < coorlen:
-					oneFrame.append(setOneFrame(xcoor[c], ycoor[c], transax, transfg, ant_img))
+					oneFrame.extend([setOneFrame(xcoor[c], ycoor[c], transax, transfg, ant_img)])
 					ants[i].deletePointFromCoor(c)
-				if c == coorlen:
+				if c == coorlen and startedAnts != 0:
 					startedAnts -= 1
 
 		frame_nb += 1
-		print(startedAnts)
-		totalFrames.append(oneFrame)		
+		totalFrames.append(oneFrame.copy())		
 		oneFrame.clear()
 	return totalFrames
 

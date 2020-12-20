@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/20 13:37:16 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 14:57:46 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ total_phases = parse_data(nodes, edges, ants)
 # fig = plt.figure(figsize=(23.532656156639245, 13.237119088109575))
 # fig = plt.figure(figsize=(20, 10.25))
 fig = plt.figure(figsize=(10, 5))
-# show_bg_img()
+show_bg_img()
 
 g = nx.Graph()
 gr_ax = plt.axes([0.035, 0.22, 0.92, 0.65])
@@ -43,10 +43,14 @@ transfg = fig.transFigure.inverted().transform
 # imglst = oneAntStep((0, 0), (0, 4), transax, transfg, imread("img/ant2.png"))
 
 totalFrames = distributor(ants, transax, transfg, imread("img/ant2.png"))
-# anim = animation.ArtistAnimation(fig, totalFrames, interval=1, repeat=False)
-# anim.save('Lem-in.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
+print(totalFrames)
 
+anim = animation.ArtistAnimation(fig, totalFrames, interval=1, repeat=False)
+# anim.save('Lem-in.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
+# for elem in totalFrames:
+# 	print(elem, end='\n\n')
 plt.show()
+
 
 
 
