@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 14:00:26 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/20 18:10:08 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 18:16:40 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,14 +43,3 @@ def	set_ant(line, ants, phase):
 		antRoom = re.split('L|-', elem)
 		Fill_ants_list(ants, int(antRoom[1]), antRoom[2], phase)
 		if int(antRoom[1]) > totalAnts : totalAnts = int(antRoom[1])
-	return totalAnts
-
-
-
-
-
-
-
-def	print_ants(ants):
-	for i in range(1, 14):
-		print("ant_name=", i, " path=", ants[i].path, " start_phase=", ants[i].start_phase, sep='')

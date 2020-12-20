@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/20 18:10:29 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 18:16:38 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,72 +62,7 @@ def	distributor(gnr, ants, transax, transfg, ant_img):
 					if c < coorlen:
 						oneFrame.extend([setOneFrame(xcoor[c], ycoor[c], transax, transfg, ant_img)])
 						ants[i].deletePointFromCoor(c)
-				# if c == coorlen and startedAnts != 0:
-				# 	startedAnts -= 1
-					# print(startedAnts)
-
 		frame_nb += 1
 		totalFrames.append(oneFrame.copy())
 		oneFrame.clear()
 	return totalFrames
-
-				
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def     setAnimationList(transax, transfg, ants, nodes):
-# 	phase = 0
-# 	images_lst = []
-# 	while (grp_stp := group_Step(transax, transfg, ants, nodes, phase)) != -1:
-# 		images_lst.append([grp_stp])
-# 		phase += 1
-# 	return images_lst
-# def     group_Step(transax, transfg, ants, nodes, phase):
-# 	groupStep = []
-# 	n1 = (-1, -1)
-# 	ant_img = imread("img/ant3.png")
-# 	for i in range(1, len(ants)):
-# 		if ants[i].start_phase == phase or ants[i].start_phase == '#':
-# 			p = 0
-# 			pth = ants[i].path
-# 			while p < len(pth) and pth[p] == '#':
-# 				p += 1
-# 			if p + 1 < len(pth):# or p == len(pth):
-# 				# print_debug(pth[p], pth[p+1], i)
-# 				n1 = getRoomCoordinates(pth[p], nodes)
-# 				if p != 0 or (p == 0 and ants[i].start_phase == '#' ):
-# 					ants[i].deleteRoomFromPath(p)
-# 					n2 = getRoomCoordinates(pth[p + 1], nodes)
-# 				elif p == 0:
-# 					n2 = n1
-# 					n1 = (0, 4)
-# 				groupStep.append(oneAntStep(n1, n2, transax, transfg, ant_img))
-# 			if ants[i].start_phase == phase:
-# 				ants[i].setAsStarted()
-# 	if n1 == (-1, -1):
-# 		return (-1)
-# 	return groupStep
-# def     oneAntStep(n1, n2, transax, transfg, ant_img):
-# 	imsize = 0.1
-# 	oneMove = []
-# 	gnr = 20
-# 	for (x, y) in zip(np.linspace(n1[0], n2[0], gnr, endpoint=True), np.linspace(n1[1], n2[1], gnr, endpoint=True)):
-# 		xa, ya = convertData(x, y, transax, transfg)
-# 		a = plt.axes([xa-imsize/2.0,ya-imsize/2.0, imsize, imsize])
-# 		a.axis('off')
-# 		oneMove.append([a.imshow(ant_img, animated=True)])
-# 	return oneMove

@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/20 18:13:28 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 18:16:16 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ nodes = {}
 ants = []
 ants.append(0)
 gnr = 5
-total_phases = parse_data(nodes, edges, ants, gnr)
+parse_data(nodes, edges, ants, gnr)
 
 # fig = plt.figure(figsize=(23.532656156639245, 13.237119088109575))
 # fig = plt.figure(figsize=(20, 10.25))
@@ -39,14 +39,8 @@ font_color="#33190a", font_weight="bold", width=3, edge_color="#33190a")
 transax = gr_ax.transData.transform
 transfg = fig.transFigure.inverted().transform
 
-# imglst = setAnimationList(transax, transfg, ants, nodes)
-# imglst = group_Step(transax, transfg, ants, nodes, 2)
-# imglst = oneAntStep((0, 0), (0, 4), transax, transfg, imread("img/ant2.png"))
 totalFrames = distributor(gnr, ants, transax, transfg, imread("img/ant1.png"))
-# for elem in totalFrames:
-# 	print(elem)
-# 	print()
-# exit()
+
 anim = animation.ArtistAnimation(fig, totalFrames, interval=1, repeat=False)
 # anim.save('Lem-in.mp4', fps=30)#, extra_args=['-vcodec', 'libx264'])
 plt.show()
