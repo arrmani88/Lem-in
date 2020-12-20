@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/11 14:00:26 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/19 19:48:41 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 12:29:24 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,11 @@ class Ant:
 		self.path.append(name)
 	def setAsStarted(self):
 		self.start_phase = '#'
-	def	deleteRoomFromPath(self, i):
-		self.path[i] = '#'
+	def	setAsFinished(self):
+		self.start_phase = '-1'
+	def	deletePointFromCoor(self, i):
+		self.xcoor[i] = '#'
+		self.ycoor[i] = '#'
 	def	extend_coor(self, xlst, ylst):
 		self.xcoor.extend(xlst)
 		self.ycoor.extend(ylst)

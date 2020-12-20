@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 13:55:55 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/19 20:57:53 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 11:08:23 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,12 @@ def		add_nodes_edges(g, edges):
 
 def		pointsBtwn2Rooms(x1, y1, room2, ant, nodes):
 	(x, y) = getRoomCoordinates(room2, nodes)
-	xlst = np.linspace(x1, x, 30, endpoint=True)
-	ylst = np.linspace(y1, y, 30, endpoint=True)
-	ant.extend_coor(xlst, ylst)
+	if int(x1) != x or int(y1) != y:
+		xlst = np.linspace(x1, x, 30, endpoint=True)
+		ylst = np.linspace(y1, y, 30, endpoint=True)
+		ant.extend_coor(xlst, ylst)
 
-def 	translatePath2Coordinates(ants, nodes, start, gnr):
+def 	translatePath2Coordinates(ants, nodes, start):
 	for i in range(1, len(ants)):
 		pointsBtwn2Rooms(start[0], start[1], ants[i].path[0], ants[i], nodes)
 		for room in ants[i].path:
@@ -58,7 +59,7 @@ def	parse_data(nodes, edges, ants):
 			elif var == 'l':
 				append_edge(line[0:-1], edges)
 			elif var == 'A':
-				phase += 1
 				totalAnts = set_ant(line[0:-1], ants, phase)
-	translatePath2Coordinates(ants, nodes, (0, 4), 3)
-	return phase
+				phase += 1
+	translatePath2Coordinates(ants, nodes, (0, 4))
+	return (phase - 1)
