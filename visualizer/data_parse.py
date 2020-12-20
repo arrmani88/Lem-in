@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 13:55:55 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/20 11:08:23 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 13:34:55 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,8 @@ def		add_nodes_edges(g, edges):
 def		pointsBtwn2Rooms(x1, y1, room2, ant, nodes):
 	(x, y) = getRoomCoordinates(room2, nodes)
 	if int(x1) != x or int(y1) != y:
-		xlst = np.linspace(x1, x, 30, endpoint=True)
-		ylst = np.linspace(y1, y, 30, endpoint=True)
+		xlst = np.linspace(x1, x, 3, endpoint=True)
+		ylst = np.linspace(y1, y, 3, endpoint=True)
 		ant.extend_coor(xlst, ylst)
 
 def 	translatePath2Coordinates(ants, nodes, start):

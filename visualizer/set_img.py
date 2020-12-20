@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/20 12:29:59 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/20 13:38:23 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,31 +85,46 @@ def     oneAntStep(n1, n2, transax, transfg, ant_img):
 	return oneMove
 
 
-def oneFrame(x, y, transax, transfg, ant_img):
+def setOneFrame(x, y, transax, transfg, ant_img):
 	imsize = 0.1
 	xa, ya = convertData(x, y, transax, transfg)
 	a = plt.axes([xa-imsize/2.0,ya-imsize/2.0, imsize, imsize])
 	a.axis('off')
-	return(a.imshow(ant_img, animated=True))
+	obj = a.imshow(ant_img, animated=True)
+	return obj
 
 
 def	distributor(ants, transax, transfg, ant_img):
 	oneFrame = []
+	totalFrames = []
 	startedAnts = 0
-	phase = 0
-	i = 0
-	while phase or startedAnts:
-		current = int(phase / 4)
+	frame_nb = 0
+	while startedAnts or frame_nb == 0:
+		phase = int(frame_nb / 3)
+
+		i = 0
 		for i in range(1, len(ants)):
-			if ants[i].start_phase == current or ants[i].start_phase == '#':
-				if ants[i].start_phase == current:
+			if ants[i].start_phase == phase or ants[i].start_phase == '#':
+				if ants[i].start_phase == phase:
+					startedAnts += 1
 					ants[i].setAsStarted()
 				c = 0
 				xcoor = ants[i].xcoor
-				while c < len(xcoor) and xcoor[c] == '#':
+				ycoor = ants[i].ycoor
+				coorlen = len(xcoor)
+				while c < coorlen and xcoor[c] == '#':
 					c += 1
-				oneFrame.append(oneFrame(x, y, transax, transfg, ant_img))
-				ants[i].deletePointFromCoor
+				if c < coorlen:
+					oneFrame.append(setOneFrame(xcoor[c], ycoor[c], transax, transfg, ant_img))
+					ants[i].deletePointFromCoor(c)
+				if c == coorlen:
+					startedAnts -= 1
+
+		frame_nb += 1
+		print(startedAnts)
+		totalFrames.append(oneFrame)		
+		oneFrame.clear()
+	return totalFrames
 
 				
 
