@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:51:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/11 18:51:28 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/21 14:44:57 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	input_to_list(t_env *env)
 {
 	t_inp	*ptr;
 	char	*line;
-
+	
+dup2(open("maaps/bottleneck1", O_RDWR), 0);
 	get_next_line(0, &line);
 	env->inp = (t_inp *)malloc(sizeof(t_inp));
 	env->inp->next = NULL;

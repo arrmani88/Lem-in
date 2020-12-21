@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/20 18:16:38 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/21 16:53:05 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ import numpy as np
 from class_ant import *
 
 def		show_bg_img():
-	bgimg = imread("img/bgimg2.jpg")
+	bgimg = imread("visualizer/img/bgimg2.jpg")
+	# bgimg = imread("img/bgimg2.jpg")
 	im_ax = plt.axes([0, 0, 1, 1])
 	im_ax.imshow(bgimg, aspect='auto')
 
@@ -29,7 +30,7 @@ def		getRoomCoordinates(room, nodes):
 	return (nodes[room])
 
 def setOneFrame(x, y, transax, transfg, ant_img):
-	imsize = 0.035
+	imsize = 0.04
 	xa, ya = convertData(x, y, transax, transfg)
 	a = plt.axes([xa-imsize/2.0,ya-imsize/2.0, imsize, imsize])
 	a.axis('off')

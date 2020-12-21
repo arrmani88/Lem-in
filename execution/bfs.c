@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:01:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/29 14:00:15 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/20 19:15:00 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		bfs(t_env *env, int follow)
 		altern = 0;
 		tmp = first->next;
 		ft_memdel((void **)&first);
-		first = tmp; // print_current_queue(first);
+		first = tmp; //print_current_queue(first);
 	}
 	if (!env->lnk)
 		return (0);

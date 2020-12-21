@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:17:02 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/01 14:13:36 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/21 16:19:57 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	search4paths(t_env *env, int follow)
 {
-	// printf("********************************\n");
+	printf("********************************\n");
 	while (bfs(env, follow))
 		;
 	if (env->retry && !follow)

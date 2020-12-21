@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/01 14:16:59 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/21 19:08:45 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_path *allocate_pheads(t_env *env)
 	else if (env->ptheads)
 	{
 		head = env->ptheads;
-		while (head->next)
+		while (head->next != NULL)
 			head = head->next;
 		head->next = (t_ptheads *)malloc(sizeof(t_ptheads));
 		head = head->next;
@@ -51,7 +51,7 @@ t_path	*select_next_path(t_env *env)
 		env->pthds = env->ptheads;
 	else if (env->pthds)
 	{
-		if (!env->pthds->next)
+		if (env->pthds->next == NULL)
 		{
 			env->pthds->next = (t_ptheads *)malloc(sizeof(t_ptheads));
 			env->pthds->next->next = NULL;
@@ -91,8 +91,8 @@ int path_generator(t_env *env)
 		if (lnk->room->iterated == env->iteration_nb - 1 /*>3*/)
 		{
 			lnk->room->iterated = env->iteration_nb;
-			if (env->retry == 1 && lnk->flow == 1)
-				lnk->flow = 0;
+/**/		if (env->retry == 1 && lnk->flow == 1)
+/**/			lnk->flow = 0;
 			else if (!lnk->flow)
 				lnk->flow = 1;
 			lnk->room->full ? env->retry = 1 : 0;
@@ -121,6 +121,6 @@ int path_generator(t_env *env)
 		rm = lnk->room;
 	}
 	delete_path_rest(env->pth);
-	print_path(papr);
+	// print_path(papr);
 	return (1);
 }
