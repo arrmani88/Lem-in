@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:17:02 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/22 12:23:34 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:54:58 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	search4paths(t_env *env, int follow)
 	{
 		env->second_call = 1;
 		search4paths(env, 1);
-		delete_heads_rest(&(env->pthds));
+		delete_heads_rest((env->pthds));
 		return ;
 	}
 }

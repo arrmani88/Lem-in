@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/30 14:39:35 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:54:45 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int		bfs(t_env *env, int var);
 t_room	*get_room(t_env *env, char *room);
 void    initialize_var(t_env *env);
 int		path_generator(t_env *env);
-void	delete_heads_rest(t_ptheads **pthds);
+void	delete_heads_rest(t_ptheads *pthds);
 void	delete_path_rest(t_path *ptr);
 void	set_antsnb(t_inp **inp, t_env *env);
 
