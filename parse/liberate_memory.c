@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:50:09 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/22 14:57:07 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/22 15:01:44 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	delete_heads_rest(t_ptheads *pthds)
 	t_path		*tmp2;
 
 	ptr = (pthds)->next;
+	(pthds)->next = NULL;
 	while (ptr)
 	{	
 		path = (ptr)->path;
@@ -37,8 +38,7 @@ void	delete_heads_rest(t_ptheads *pthds)
 			path = tmp2;
 		}
 		tmp = (ptr)->next;
-		// ft_memdel((void **)ptr);
-		free(ptr)
+		free(ptr);
 		ptr = tmp;
 	}
 }
