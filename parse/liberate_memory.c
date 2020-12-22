@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:50:09 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/01 14:13:31 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/22 12:11:38 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,15 @@ void	delete_heads_rest(t_ptheads **pthds)
 	while (*ptr)
 	{
 	
-		// printf("dakhla\n");
+		printf("pointer %p\n", *ptr);
 		path = &((*ptr)->path);
 		while (*path)
 		{
-			// printf("address :%p::::::::::::::%s\n", *path, (*path)->room->name);
 			tmp2 = &((*path)->next);
+			printf("\t%p{%p}\n", path, *path);
 			ft_memdel((void **)path);
-			// printf("address :%p\n", *path);
 			path = tmp2;
 		}
-		// printf("lkharja\n");	
-		
 		tmp = &((*ptr)->next);
 		ft_memdel((void **)ptr);
 		ptr = tmp;
