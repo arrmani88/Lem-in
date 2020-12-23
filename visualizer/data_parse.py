@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 13:55:55 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/21 16:49:28 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/23 15:06:38 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ def     append_edge(line, edges):
 def		append_node(line, nodes):
 	tmp = line.split(' ')
 	nodes[tmp[0]] = (int(tmp[1]), int(tmp[2]))
+	return (int(tmp[1]), int(tmp[2]))
 
 def		add_nodes_edges(g, edges):
 	g.add_edges_from(edges)
@@ -49,10 +50,17 @@ def 	translatePath2Coordinates(ants, nodes, start, gnr):
 
 def	parse_data(nodes, edges, ants, gnr):
 	phase = 0
-	fd = open("maaps/out", "r")
+	starting_room = 0
+	# fd = open("maaps/out", "r")
+	fd = open(0, "r")
 	lines = fd.readlines()
 	for line in lines:
-		if line[0] != '#':
+		if line[0:-1] == '##start' and starting_room == 0:
+			starting_room = 1
+		elif starting_room == 1:
+			starting_room = -1
+			start = append_node(line[0:-1], nodes)
+		elif line[0] != '#':
 			var = room_or_link(line)
 			if var == 'r':
 				append_node(line[0:-1], nodes)
@@ -61,4 +69,4 @@ def	parse_data(nodes, edges, ants, gnr):
 			elif var == 'A':
 				set_ant(line[0:-1], ants, phase)
 				phase += 1
-	translatePath2Coordinates(ants, nodes, (0, 4), gnr)
+	translatePath2Coordinates(ants, nodes, start, gnr)

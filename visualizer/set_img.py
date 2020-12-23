@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/09 14:42:39 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/21 16:53:05 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/23 14:50:21 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,3 +67,8 @@ def	distributor(gnr, ants, transax, transfg, ant_img):
 		totalFrames.append(oneFrame.copy())
 		oneFrame.clear()
 	return totalFrames
+
+
+def	print_ants(ants):
+	for i in range(1, len(ants)):
+		print(i, ants[i].path)

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:17:02 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/22 14:54:58 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/23 14:12:51 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	search4paths(t_env *env, int follow)
 {
-	printf("********************************\n");
+	// printf("********************************\n");
 	while (bfs(env, follow))
 		;
 	if (env->retry && !follow)
@@ -40,28 +40,28 @@ int		main()
 	else
 	{
 		search4paths(env, 0);
-printf("\n");print_all_paths(env);
+// printf("\n");print_all_paths(env);
 
-		// tmp = env->inp;
-		// while (tmp)
-		// {
-		// 	ft_putendl(tmp->line);
-		// 	tmp = tmp->next;
-		// }
-		// if (env->ptheads && env->antsnb)
-		// {
+		tmp = env->inp;
+		while (tmp)
+		{
+			ft_putendl(tmp->line);
+			tmp = tmp->next;
+		}
+		if (env->ptheads && env->antsnb)
+		{
 
-		// 	ft_select_paths(env, env->ptheads, 0);
-		// 	ft_calc_ants(env);
+			ft_select_paths(env, env->ptheads, 0);
+			ft_calc_ants(env);
 
-		// 	opt.id = 0;
-		// 	opt.ret = 0;
-		// 	opt.flag = 0;
-		// 	opt.antsnb = env->antsnb;
-		// 	opt.antsnb_org = env->antsnb;
-		// 	opt.nbrpaths = env->nbrpaths;
-		// 	ft_move_ants_trip(env->ptheads, env->ptheads, opt, 1);
-		// }
+			opt.id = 0;
+			opt.ret = 0;
+			opt.flag = 0;
+			opt.antsnb = env->antsnb;
+			opt.antsnb_org = env->antsnb;
+			opt.nbrpaths = env->nbrpaths;
+			ft_move_ants_trip(env->ptheads, env->ptheads, opt, 1);
+		}
 	}
 	return (0);
 }
