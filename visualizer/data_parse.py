@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/12 13:55:55 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/23 15:06:38 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/23 16:04:35 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,6 @@ def	parse_data(nodes, edges, ants, gnr):
 			elif var == 'l':
 				append_edge(line[0:-1], edges)
 			elif var == 'A':
-				set_ant(line[0:-1], ants, phase)
+				set_ant(line[0:-2], ants, phase)
 				phase += 1
 	translatePath2Coordinates(ants, nodes, start, gnr)
