@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:51:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/23 15:25:54 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/24 11:08:03 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int		rooms_count(char *str)
 		return (0);
 	if (str[i] == ' ' && ++spc)
 		;
-	if (str[++i] && ft_isdigit(str[i]) && ++wrd)
+	if (str[i] && str[++i] && ft_isdigit(str[i]) && ++wrd)
 		while (ft_isdigit(str[++i]))
 			;
 	if (str[i] == ' ' && ++spc)
 		;
-	if (str[++i] && ft_isdigit(str[i]) && ++wrd)
+	if (str[i] && str[++i] && ft_isdigit(str[i]) && ++wrd)
 		while (str[++i] && ft_isdigit(str[i]))
 			;
 	return ((wrd == 3 && spc == 2) ? 1 : 0);
@@ -46,7 +46,7 @@ void	input_to_list(t_env *env)
 	t_inp	*ptr;
 	char	*line;
 	
-dup2(open("maaps/big", O_RDWR), 0);
+int fd2 = open("maaps/bottleneck1", O_RDWR);  dup2(fd2, 0);
 // dup2(open("maaps/bottleneck1", O_RDWR), 0);
 	get_next_line(0, &line);
 	env->inp = (t_inp *)malloc(sizeof(t_inp));

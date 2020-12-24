@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/22 14:54:45 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/24 11:03:37 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,9 +148,10 @@ int		ft_str_is_name(char *str);
 
 #endif
 
-// # error checking:
-// 	+the same link 2 times
+// print error in stderr 2
+// file:loop1 khaso y3ti error
+// file:buggy men start l end imchiw kamlin d9a whda
+// file:segf
 
-// # n3teh i9aleb 3la chi room makaynach f liste **room 
-// # env->room[x]->link had liste nfreei gha nodes ama stringat blach 7it
-// 	lpointer m affecti lih gha l'adresse men liste li fiha initial data
+
+// malloc err: dth-custom-m1

@@ -1,4 +1,4 @@
 import re
-stri = "L1-1 "
-elems = stri.split('[^ ]')
-print(elems)
+s = "Fract'ol    3000 3475"
+lst = re.split('\ +', s)
+print(lst)
