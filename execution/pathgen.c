@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/25 15:27:49 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/25 15:31:41 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_path *allocate_pheads(t_env *env)
 	}
 	else if (env->ptheads)
 	{
-		printf("######################################################");
 		head = env->ptheads;
 		while (head->next != NULL)
 			head = head->next;
