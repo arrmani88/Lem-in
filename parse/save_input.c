@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 18:34:56 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/11/19 13:43:56 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/25 15:16:38 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	link_two_rooms(t_env *env, char *rm1, char *rm2)
 		env->lnk = env->lnk->next;
 	}
 	env->lnk->room = get_room(env, rm2);
+	if (env->ptr == env->start || env->ptr == env->end ||
+		env->lnk->room == env->start || env->lnk->room == env->end)
+		env->startEndLinked = 1;
 	env->lnk->next = NULL;
 	env->lnk->flow = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:17:02 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/24 11:57:15 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/25 15:19:50 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ int		main()
 		ft_putendl("ERROR");
 	else
 	{
-		search4paths(env, 0);
+		if (!env->startEndLinked)
+			search4paths(env, 0);
+		else if (env->startEndLinked)
+			setOnePath(env);
+		// exit(0);
 // printf("\n");print_all_paths(env);
 
 		tmp = env->inp;

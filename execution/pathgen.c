@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/22 12:51:00 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/25 15:27:49 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_path *allocate_pheads(t_env *env)
 	}
 	else if (env->ptheads)
 	{
+		printf("######################################################");
 		head = env->ptheads;
 		while (head->next != NULL)
 			head = head->next;
@@ -70,6 +71,7 @@ int path_generator(t_env *env)
 	t_link *rv_lnk;
 	t_path *papr;
 
+	int i = 0;
 	++env->iteration_nb; /*V1*/
 	rm = env->end;
 	while (rm != env->start)
@@ -86,7 +88,7 @@ int path_generator(t_env *env)
 	while (rm != env->end)
 	{
 		lnk = rm->link;
-		while (lnk->room->iterated != env->iteration_nb - 1)
+		while (lnk->room->iterated != env->iteration_nb - 1 && ++i)
 			lnk = lnk->next;
 		if (lnk->room->iterated == env->iteration_nb - 1 /*>3*/)
 		{
@@ -123,4 +125,13 @@ int path_generator(t_env *env)
 	delete_path_rest(env->pth);
 	// print_path(papr);
 	return (1);
+}
+
+void	setOnePath(t_env *env)
+{
+	env->pth = allocate_pheads(env);
+	env->pth->room = env->start;
+	env->pth->next = (t_path *)ft_memalloc(sizeof(t_path));
+	env->pth = env->pth->next;
+	env->pth->room = env->end;
 }

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/24 11:03:37 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/25 15:27:30 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_env
 	int			totallen;
 	int			index;
 	int			section;
+	int			startEndLinked;
 }				t_env;
 
 void	liberate_memory();
@@ -146,12 +147,10 @@ int ft_print_ants(t_path *path, int *flag);
 int		ft_str_is_num(char *str);
 int		ft_str_is_name(char *str);
 
+void	setOnePath(t_env *env);
 #endif
 
 // print error in stderr 2
 // file:loop1 khaso y3ti error
 // file:buggy men start l end imchiw kamlin d9a whda
 // file:segf
-
-
-// malloc err: dth-custom-m1

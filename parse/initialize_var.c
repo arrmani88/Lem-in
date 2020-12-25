@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 10:11:06 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/22 11:34:12 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/25 15:15:48 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void    initialize_var(t_env *env)
 	env->totallen = 0;
 	env->start = NULL;
 	env->end = NULL;
+	env->startEndLinked = 0;
 }
 
 
