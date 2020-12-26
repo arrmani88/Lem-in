@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 14:42:43 by anel-bou          #+#    #+#              #
-#    Updated: 2020/12/24 11:08:26 by anel-bou         ###   ########.fr        #
+#    Updated: 2020/12/26 16:22:34 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ edges = []
 nodes = {}
 ants = []
 ants.append(0)
-gnr = 15
+gnr = 4
 parse_data(nodes, edges, ants, gnr)
 # print_ants(ants)
 
@@ -30,11 +30,11 @@ parse_data(nodes, edges, ants, gnr)
 # fig = plt.figure(figsize=(33, 17.25))
 fig = plt.figure(figsize=(15, 7.5))
 # fig = plt.figure(figsize=(10, 5))
-# show_bg_img()
+show_bg_img()
 
 g = nx.Graph()
-# gr_ax = plt.axes([0.035, 0.22, 0.92, 0.65])
-gr_ax = plt.axes([0, 0, 1, 1])
+gr_ax = plt.axes([0.035, 0.22, 0.92, 0.65])
+# gr_ax = plt.axes([0, 0, 1, 1])
 add_nodes_edges(g, edges)
 nx.draw(g, pos=nodes, ax=gr_ax, with_labels=True, node_size=300,
 node_color="#B78356", node_shape="8", linewidths=10, font_size=20,

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/25 15:31:41 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/26 16:23:59 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int path_generator(t_env *env)
 		rm = lnk->room;
 	}
 	delete_path_rest(env->pth);
-	// print_path(papr);
+	print_path(papr);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:01:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/20 19:15:00 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/26 16:43:59 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ void	save_parent(t_env *env, t_room *room)
 
 int		bfs(t_env *env, int follow)
 {
-	t_room	*prn;
 	t_queue *last;
 	t_queue	*first;
 	t_queue	*tmp;
 	int		rpt;
 	int		altern;
 
-	prn = NULL;
 	rpt = 0;
 	altern = 0;
 	++env->iteration_nb;
