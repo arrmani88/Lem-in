@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 10:18:10 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/27 12:41:40 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/27 15:35:53 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,16 @@ void    setDeptLayers(t_env *env)
 	while (first)
 	{
 		lnk = first->room->link;
-		while (lnk && lnk->room->dept_layer == -1)
+		while (lnk)
 		{
-			lnk->room->dept_layer = dept;
-			last->next = (t_queue *)malloc(sizeof(t_queue));
-			last = last->next;
-			last->room = lnk->room;
-			last->next = NULL;
+			if (lnk->room->dept_layer == -1)
+			{
+				lnk->room->dept_layer = dept;
+				last->next = (t_queue *)malloc(sizeof(t_queue));
+				last = last->next;
+				last->room = lnk->room;
+				last->next = NULL;
+			}
 			lnk = lnk->next;
 		}
 		dept++;

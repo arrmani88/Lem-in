@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 18:34:56 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/27 10:42:29 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/27 17:15:47 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	fill_room(t_env *env, char *str, int msg)
 	env->ptr->parent = NULL;
 	env->ptr->set_last = 0;
 	env->ptr->dept_layer = -1;
+	env->ptr->correctionRoom = 0;
 }
 
 void	link_two_rooms(t_env *env, char *rm1, char *rm2)

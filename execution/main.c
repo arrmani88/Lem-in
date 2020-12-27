@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:17:02 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/27 10:28:45 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/27 19:06:43 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int		main()
 	initialize_var(env);
 	input_to_list(env);
 	if (!save_input(env))
-		ft_putendl("ERROR");
+		ft_putendl_fd("ERROR", 2);
 	else
 	{
 		if (!env->startEndLinked)
 		{
-			set_dept_layers(env);
+			setDeptLayers(env);
 			search4paths(env, 0);
 		}
 		else if (env->startEndLinked)

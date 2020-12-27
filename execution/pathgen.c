@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/26 16:23:59 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/27 19:06:30 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ t_path *allocate_pheads(t_env *env)
 		head->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
 		head = head->next;
 	}
-	// head->next = NULL;
 	head->path = (t_path *)ft_memalloc(sizeof(t_path));
-	// head->path->next = NULL;
 	return (head->path);
 }
 
@@ -54,16 +52,14 @@ t_path	*select_next_path(t_env *env)
 		if (env->pthds->next == NULL)
 		{
 			env->pthds->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-			// env->pthds->next->next = NULL;
 			env->pthds->next->path = (t_path *)ft_memalloc(sizeof(t_path));
-			// env->pthds->next->path->next = NULL;
 		}
 		env->pthds = env->pthds->next;
 	}
 	return (env->pthds->path);
 }
 
-int path_generator(t_env *env)
+int path_generator(t_env *env, t_room *start)
 {
 	t_room *rm;
 	t_link *lnk;
@@ -73,17 +69,15 @@ int path_generator(t_env *env)
 	int i = 0;
 	++env->iteration_nb; /*V1*/
 	rm = env->end;
-	while (rm != env->start)
+	while (rm && rm != start)
 	{
 		rm->iterated = env->iteration_nb;
 		rm = rm->parent;
 	}
-	// lnk = NULL;
 	rm->iterated = ++env->iteration_nb; /*V2*/
 	env->pth = (!env->second_call ? allocate_pheads(env) : select_next_path(env));
 	papr = env->pth; /* asp */
 	env->pth->room = rm;
-	// env->pth->next = NULL;
 	while (rm != env->end)
 	{
 		lnk = rm->link;
@@ -102,10 +96,7 @@ int path_generator(t_env *env)
 				env->second_call ? (lnk->room->full = 2) : (lnk->room->full = 1);
 			
 			if (!env->pth->next)
-			{
 				env->pth->next = (t_path *)ft_memalloc(sizeof(t_path));
-				// env->pth->next->next = NULL;
-			}
 			env->pth = env->pth->next;
 			env->pth->room = lnk->room;
 			if (rm && rm->parent)
