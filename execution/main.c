@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:17:02 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/26 16:24:27 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/27 10:28:45 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	search4paths(t_env *env, int follow)
 {
-	while (bfs(env, follow))
+	while (bfs(env, follow, env->start))
 		;
 	printf("------------------------------------------\n");
 	if (env->retry && !follow)
@@ -40,7 +40,10 @@ int		main()
 	else
 	{
 		if (!env->startEndLinked)
+		{
+			set_dept_layers(env);
 			search4paths(env, 0);
+		}
 		else if (env->startEndLinked)
 			setOnePath(env);
 printf("\n");print_all_paths(env); exit(0);

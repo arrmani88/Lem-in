@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/25 15:27:30 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/27 12:42:27 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct	s_room
 	int				used; /* asup */
 	int				full;
 	int				set_last;
+	int				dept_layer;
 }				t_room;
 
 typedef struct s_ant_opt
@@ -122,7 +123,7 @@ int		check_error(t_inp **inp, char **line, int *section);
 void	input_to_list(t_env *env);
 int		save_input(t_env *env);
 int		get_index(int max, char *str);
-int		bfs(t_env *env, int var);
+int		bfs(t_env *env, int follow, t_room *start);
 t_room	*get_room(t_env *env, char *room);
 void    initialize_var(t_env *env);
 int		path_generator(t_env *env);
@@ -148,9 +149,12 @@ int		ft_str_is_num(char *str);
 int		ft_str_is_name(char *str);
 
 void	setOnePath(t_env *env);
+void    setDeptLayers(t_env *env);
+t_room	*MoveBackToFirstPossibleStart(t_env *env, t_room *room);
+
 #endif
 
 // print error in stderr 2
 // file:loop1 khaso y3ti error
-// file:buggy men start l end imchiw kamlin d9a whda
+// file:buggy instruction wehda
 // file:segf

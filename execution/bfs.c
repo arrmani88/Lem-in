@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:01:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/26 16:43:59 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/27 12:46:56 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	save_parent(t_env *env, t_room *room)
 	}
 }
 
-int		bfs(t_env *env, int follow)
+int		bfs(t_env *env, int follow, t_room *start)
 {
 	t_queue *last;
 	t_queue	*first;
@@ -44,9 +44,9 @@ int		bfs(t_env *env, int follow)
 	rpt = 0;
 	altern = 0;
 	++env->iteration_nb;
-	env->start->iterated = env->iteration_nb; /*V1*/
+	start->iterated = env->iteration_nb; /*V1*/
 	last = (t_queue*)malloc(sizeof(t_queue));
-	last->room = env->start;
+	last->room = start;
 	last->next = NULL;
 	first = last;
 	// print_current_queue(first);
@@ -60,6 +60,10 @@ int		bfs(t_env *env, int follow)
 			&& env->lnk->flow == follow && env->lnk->room->full != 2)
 			{
 				env->lnk->room->set_last ? env->lnk->room->set_last = 0 : 0;
+				if (env->lnk->room->full == 1)
+				{
+					
+				}
 				if (env->lnk->room->full == 1 && !rpt)
 				{
 					env->lnk->room->set_last = 1;
@@ -95,6 +99,24 @@ int		bfs(t_env *env, int follow)
 	return (path_generator(env));
 }
 
+t_room	*MoveBackToFirstPossibleStart(t_env *env, t_room *room)
+{
+	t_link	*lnk;
+	t_room	*rm;
+	
+	lnk = room->link;
+	rm = room;
+	while (room->full != 0)
+	{
+		lnk = rm->link;
+		while (lnk)
+		{
+			if (lnk->room->full == 1)
+
+		}
+	}
+
+}
 
 
 
