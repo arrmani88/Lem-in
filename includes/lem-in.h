@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/27 19:06:38 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/28 15:10:30 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void ft_calc_ants(t_env *env);
 int ft_select_path(t_env *env, int next_len, int avg_len);
 void ft_select_paths(t_env *env, t_ptheads *current, int avg_len);
 void ft_move_ants_lip(t_ptheads *path, t_ant_opt *opt);
-void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int start);
+void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int start, int *i);
 int ft_print_ants(t_path *path, int *flag);
 
 int		ft_str_is_num(char *str);

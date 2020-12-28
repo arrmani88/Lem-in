@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 09:59:34 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/23 15:07:38 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/28 15:09:12 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void ft_move_ants_lip(t_ptheads *path, t_ant_opt *opt)
     ft_move_ants_lip(path->next, opt);
 }
 
-void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int start)
+void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int start, int *i)
 {
     
     opt.ret = ft_print_ants(pivot->path->next, &(opt.flag));
@@ -100,6 +100,7 @@ void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int st
     {
         ft_move_ants_lip(paths, &opt);
         printf("\n");
+        (*i)++;
     }
     
     if (!(pivot->next) && opt.flag)
@@ -108,7 +109,7 @@ void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int st
     if (opt.antsnb == 0)
         return ;
   
-    ft_move_ants_trip(paths, (pivot->next) ? pivot->next : paths, opt, 0);
+    ft_move_ants_trip(paths, (pivot->next) ? pivot->next : paths, opt, 0, i);
 }
 
 int ft_select_path(t_env *env, int next_len, int avg_len)

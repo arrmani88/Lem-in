@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/27 19:06:30 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/28 18:32:17 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int path_generator(t_env *env, t_room *start)
 	env->pth = (!env->second_call ? allocate_pheads(env) : select_next_path(env));
 	papr = env->pth; /* asp */
 	env->pth->room = rm;
-	while (rm != env->end)
+	while (rm != env->end && ++i)
 	{
 		lnk = rm->link;
-		while (lnk->room->iterated != env->iteration_nb - 1 && ++i)
+		while (lnk->room->iterated != env->iteration_nb - 1)
 			lnk = lnk->next;
 		if (lnk->room->iterated == env->iteration_nb - 1 /*>3*/)
 		{
