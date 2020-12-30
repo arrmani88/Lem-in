@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/28 15:10:30 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:37:52 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,22 @@ typedef struct s_ant_opt
 	int flag;
 }				t_ant_opt;
 
+typedef struct	s_pathGroup
+{
+	struct s_ptheads	*head;
+	struct s_pathGroup	*next;
+	int					groupNumber;
+}				t_pathGroup;
+
+
 typedef struct s_env
 {
-	t_room		**room;	 //56
-	t_room		*start;	 //56
-	t_room		*end;	 //56
-	t_room		*ptr;	 //56
+	t_room		**room;	 //72
+	t_room		*start;	 //72
+	t_room		*end;	 //72
+	t_room		*ptr;	 //72
 	t_link		*lnk;	 //24
+	t_pathGroup	*pathgroup;
 	t_ptheads	*ptheads;//16
 	t_ptheads	*pthds;	 //16
 	t_path		*path;	 //16
@@ -152,6 +161,7 @@ int		ft_str_is_name(char *str);
 void	setOnePath(t_env *env);
 void    setDeptLayers(t_env *env);
 void	MoveBackToFirstPossibleStart(t_env *env, t_room *room);
+void	verifyReverseLink(t_env *env, t_link *lnk, t_room *rm);
 
 #endif
 

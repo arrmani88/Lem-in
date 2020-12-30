@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:01:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/28 17:11:29 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/30 08:49:16 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,7 @@ int		bfs(t_env *env, int follow, t_room *start)
 			if  (((rpt == 0 && env->lnk->room->iterated != env->iteration_nb) || (rpt == 1 && env->lnk->room->set_last))
 			&& env->lnk->flow == follow && env->lnk->room->full != 2)
 			{
-				env->lnk->room->set_last ? env->lnk->room->set_last = 0 : 0;
-				// if (env->lnk->room->full == 1 && !follow && !env->lnk->room->correctionRoom)
-				// {
-				// 	MoveBackToFirstPossibleStart(env, env->lnk->room);
-				// }
-				if (!env->lnk)
-					return (1);
+				env->lnk->room->set_last ? env->lnk->room->set_last = 0 : 0; /*VA*/
 				if (env->lnk->room->full == 1 && !rpt)
 				{
 					env->lnk->room->set_last = 1;
@@ -155,3 +149,10 @@ void	MoveBackToFirstPossibleStart(t_env *env, t_room *room)
 
 
 	// env->end->iterated = 0; V1
+
+// if (env->lnk->room->full == 1 && !follow && !env->lnk->room->correctionRoom)  VA
+// {  VA
+// 	MoveBackToFirstPossibleStart(env, env->lnk->room);  VA
+// }  VA
+// if (!env->lnk)  VA
+// 	return (1);  VA

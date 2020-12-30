@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/28 18:32:17 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/30 14:14:21 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,43 @@ t_path	*select_next_path(t_env *env)
 	return (env->pthds->path);
 }
 
-int path_generator(t_env *env, t_room *start)
+void	verifyReverseLink(t_env *env, t_link *lnk, t_room *rm)
 {
-	t_room *rm;
-	t_link *lnk;
 	t_link *rv_lnk;
-	t_path *papr;
+	
+	if (rm && rm->parent)
+	{
+		rv_lnk = get_link_from(lnk->room, rm); /*V5*/
+		if (rv_lnk->flow == 1)
+		{
+			rv_lnk->flow = -1;
+			lnk->flow = -1;
+			env->retry = 1;
+		}
+	}
+}
 
+t_room	*enumerateFromEndToStart(t_env *env, t_room *rm, t_room *start)
+{
 	int i = 0;
-	++env->iteration_nb; /*V1*/
 	rm = env->end;
-	while (rm && rm != start)
+	while (rm && rm != start && ++i)
 	{
 		rm->iterated = env->iteration_nb;
 		rm = rm->parent;
 	}
+	return(rm);
+}
+
+int path_generator(t_env *env, t_room *start)
+{
+	t_room *rm;
+	t_link *lnk;
+	t_path *papr; /*asp*/
+
+	int i = 0;
+	++env->iteration_nb; /*V1*/
+	rm = enumerateFromEndToStart(env, rm, start);
 	rm->iterated = ++env->iteration_nb; /*V2*/
 	env->pth = (!env->second_call ? allocate_pheads(env) : select_next_path(env));
 	papr = env->pth; /* asp */
@@ -90,30 +112,19 @@ int path_generator(t_env *env, t_room *start)
 				lnk->flow = 0;
 			else if (!lnk->flow)
 				lnk->flow = 1;
-			lnk->room->full ? env->retry = 1 : 0;
-			// lnk->room != env->end ? lnk->room->used = 1 : 0;
+			lnk->room->full ? env->retry = 1 : 0; /*Va*/
 			if (lnk->room != env->end)
 				env->second_call ? (lnk->room->full = 2) : (lnk->room->full = 1);
-			
 			if (!env->pth->next)
 				env->pth->next = (t_path *)ft_memalloc(sizeof(t_path));
 			env->pth = env->pth->next;
 			env->pth->room = lnk->room;
-			if (rm && rm->parent)
-			{
-				rv_lnk = get_link_from(lnk->room, rm); /*V5*/
-				if (rv_lnk->flow == 1)
-				{
-					rv_lnk->flow = -1;
-					lnk->flow = -1;
-					env->retry = 1;
-				}
-			}
-		} /*V4*/
-		rm = lnk->room;
+			verifyReverseLink(env, lnk, rm);
+		}
+		rm = lnk->room; /*A4*/
 	}
 	delete_path_rest(env->pth);
-	print_path(papr);
+	print_path(papr); /*asp*/
 	return (1);
 }
 
@@ -125,3 +136,10 @@ void	setOnePath(t_env *env)
 	env->pth = env->pth->next;
 	env->pth->room = env->end;
 }
+
+
+
+
+
+
+// lnk->room != env->end ? lnk->room->used = 1 : 0; Va
