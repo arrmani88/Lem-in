@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:01:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/30 08:49:16 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/30 15:58:38 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_room	*get_room(t_env *env, char *room)
 		env->ptr = env->ptr->next;
 	return (env->ptr);
 }
+
 void	save_parent(t_env *env, t_room *room)
 {
 	t_link	*lnk;

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/30 14:14:21 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/30 16:46:42 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,43 +20,6 @@ t_link *get_link_from(t_room *room1, t_room *room2)
 	while (!ft_strequ(room2->name, link->room->name))
 		link = link->next;
 	return (link);
-}
-
-t_path *allocate_pheads(t_env *env)
-{
-	t_ptheads *head;
-
-	if (env->ptheads == NULL)
-	{
-		env->ptheads = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-		head = env->ptheads;
-	}
-	else if (env->ptheads)
-	{
-		head = env->ptheads;
-		while (head->next != NULL)
-			head = head->next;
-		head->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-		head = head->next;
-	}
-	head->path = (t_path *)ft_memalloc(sizeof(t_path));
-	return (head->path);
-}
-
-t_path	*select_next_path(t_env *env)
-{
-	if (!env->pthds && env->ptheads)
-		env->pthds = env->ptheads;
-	else if (env->pthds)
-	{
-		if (env->pthds->next == NULL)
-		{
-			env->pthds->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-			env->pthds->next->path = (t_path *)ft_memalloc(sizeof(t_path));
-		}
-		env->pthds = env->pthds->next;
-	}
-	return (env->pthds->path);
 }
 
 void	verifyReverseLink(t_env *env, t_link *lnk, t_room *rm)
@@ -87,7 +50,99 @@ t_room	*enumerateFromEndToStart(t_env *env, t_room *rm, t_room *start)
 	return(rm);
 }
 
-int path_generator(t_env *env, t_room *start)
+t_path	*select_next_path(t_env *env)
+{
+	if (!env->pthds && env->ptheads)
+		env->pthds = env->ptheads;
+	else if (env->pthds)
+	{
+		if (env->pthds->next == NULL)
+		{
+			env->pthds->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+			env->pthds->next->path = (t_path *)ft_memalloc(sizeof(t_path));
+		}
+		env->pthds = env->pthds->next;
+	}
+	return (env->pthds->path);
+}
+
+t_path *allocate_pheads(t_env *env)
+{
+	t_ptheads *head;
+
+	if (env->ptheads == NULL)
+	{
+		env->ptheads = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+		head = env->ptheads;
+	}
+	else if (env->ptheads)
+	{
+		head = env->ptheads;
+		while (head->next != NULL)
+			head = head->next;
+		head->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+		head = head->next;
+	}
+	head->path = (t_path *)ft_memalloc(sizeof(t_path));
+	return (head->path);
+}
+
+t_ptheads	*allocatePathHead(t_env *env)
+{
+	t_ptheads *head;
+
+	head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+	head->path = (t_path *)ft_memalloc(sizeof(t_path));
+	env->pth = head->path;
+	env->pthds = head;
+}
+
+int		checkIfRoomDuplicatedInBoth(t_path *p1, t_path *p2)
+{
+	t_path *ptr;
+
+	while (p1)
+	{
+		ptr = p2;
+		while (ptr)
+		{
+			if (p1->room == ptr->room)
+				return (1);
+			ptr = ptr->next;
+		}
+		p1 = p1->next;
+	}
+}
+
+t_pathGroup *searchForConvenientGroup(t_env *env)
+{
+	t_pathGroup *patGrp;
+	t_ptheads	*patHed;
+
+	patGrp = env->pathGroup;
+	while (patGrp)
+	{
+		patHed = patGrp->head;
+		while (patHed)
+		{
+			checkIfRoomDuplicatedInBoth(patHed, env->pthds);
+			patHed = patHed->next;
+		}
+		patGrp = patGrp->next;
+	}
+}
+
+void	setPathInConvenientGroup(t_env *env)
+{
+	searchForConvenientGroup(env);
+	if (env->pathGroup == NULL)
+	{
+		env->pathGroup = (t_pathGroup*)ft_memalloc(sizeof(t_pathGroup));
+	}
+	
+}
+
+int		path_generator(t_env *env, t_room *start)
 {
 	t_room *rm;
 	t_link *lnk;
@@ -97,7 +152,8 @@ int path_generator(t_env *env, t_room *start)
 	++env->iteration_nb; /*V1*/
 	rm = enumerateFromEndToStart(env, rm, start);
 	rm->iterated = ++env->iteration_nb; /*V2*/
-	env->pth = (!env->second_call ? allocate_pheads(env) : select_next_path(env));
+	// env->pth = (!env->second_call ? allocate_pheads(env) : select_next_path(env));
+	env->pthds = allocatePathHead(env);
 	papr = env->pth; /* asp */
 	env->pth->room = rm;
 	while (rm != env->end && ++i)
@@ -123,7 +179,8 @@ int path_generator(t_env *env, t_room *start)
 		}
 		rm = lnk->room; /*A4*/
 	}
-	delete_path_rest(env->pth);
+	setPathInConvenientGroup(env);
+	// delete_path_rest(env->pth);
 	print_path(papr); /*asp*/
 	return (1);
 }
