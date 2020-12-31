@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/30 16:46:42 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/31 11:52:48 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_path *allocate_pheads(t_env *env)
 	return (head->path);
 }
 
-t_ptheads	*allocatePathHead(t_env *env)
+void	allocatePathHead(t_env *env)
 {
 	t_ptheads *head;
 
@@ -112,34 +112,65 @@ int		checkIfRoomDuplicatedInBoth(t_path *p1, t_path *p2)
 		}
 		p1 = p1->next;
 	}
+	return (0);
 }
 
-t_pathGroup *searchForConvenientGroup(t_env *env)
+void	saveHeadInThisGroup(t_env *env, t_ptheads *prev, t_pathGroup **grp)
+{
+	t_ptheads *head;
+
+	if (prev == NULL) /*lakan lgrp mafih ta head (mzl khawi) */
+	{
+		(*grp)->head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+		head = (*grp)->head;
+	}
+	else /* else ser lhead lakkher w allouwi fnext dialo */
+	{
+		prev->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+		head = prev->next;
+	}
+	head->path = env->pth;
+}
+
+void	searchForConvenientGroup(t_env *env)
 {
 	t_pathGroup *patGrp;
 	t_ptheads	*patHed;
+	t_ptheads	*prev;
+	int			isAnyPathSaved;
 
 	patGrp = env->pathGroup;
+	prev = NULL;
 	while (patGrp)
 	{
 		patHed = patGrp->head;
 		while (patHed)
 		{
-			checkIfRoomDuplicatedInBoth(patHed, env->pthds);
+			if (checkIfRoomDuplicatedInBoth(patHed->path, env->pthds->path))
+				break;
+			prev = patHed;
 			patHed = patHed->next;
 		}
+		if (patHed == NULL && ++isAnyPathSaved)
+			saveHeadInThisGroup(env, prev, &patGrp);
 		patGrp = patGrp->next;
 	}
+	if (!isAnyPathSaved)
+		saveHeadInNewGrp(env);
 }
 
-void	setPathInConvenientGroup(t_env *env)
+void	saveHeadInNewGrp(t_env *env)
 {
-	searchForConvenientGroup(env);
-	if (env->pathGroup == NULL)
-	{
-		env->pathGroup = (t_pathGroup*)ft_memalloc(sizeof(t_pathGroup));
-	}
-	
+	t_pathGroup *grp;
+
+	grp = env->pathGroup;
+	while (grp->next)
+		grp = grp->next;
+	grp->next = (t_pathGroup *)ft_memalloc(sizeof(t_pathGroup));
+	grp = grp->next;
+	grp->head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+	grp->head->path = env->pth;
+
 }
 
 int		path_generator(t_env *env, t_room *start)
@@ -153,7 +184,7 @@ int		path_generator(t_env *env, t_room *start)
 	rm = enumerateFromEndToStart(env, rm, start);
 	rm->iterated = ++env->iteration_nb; /*V2*/
 	// env->pth = (!env->second_call ? allocate_pheads(env) : select_next_path(env));
-	env->pthds = allocatePathHead(env);
+	allocatePathHead(env);
 	papr = env->pth; /* asp */
 	env->pth->room = rm;
 	while (rm != env->end && ++i)
@@ -179,7 +210,8 @@ int		path_generator(t_env *env, t_room *start)
 		}
 		rm = lnk->room; /*A4*/
 	}
-	setPathInConvenientGroup(env);
+	searchForConvenientGroup(env);
+	// setPathInConvenientGroup(env);
 	// delete_path_rest(env->pth);
 	print_path(papr); /*asp*/
 	return (1);
@@ -200,3 +232,14 @@ void	setOnePath(t_env *env)
 
 
 // lnk->room != env->end ? lnk->room->used = 1 : 0; Va
+
+
+// void	setPathInConvenientGroup(t_env *env)
+// {
+// 	searchForConvenientGroup(env);
+// 	if (env->pathGroup == NULL)
+// 	{
+// 		env->pathGroup = (t_pathGroup*)ft_memalloc(sizeof(t_pathGroup));
+// 	}
+	
+// }
