@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 11:48:55 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/31 18:26:06 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct s_env
 	int			index;
 	int			section;
 	int			startEndLinked;
+	int			groupNb;
 }				t_env;
 
 void	liberate_memory();

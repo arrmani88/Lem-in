@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 10:11:06 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 11:49:08 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/31 17:30:30 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void    initialize_var(t_env *env)
 	env->end = NULL;
 	env->startEndLinked = 0;
 	env->pathGroup = (t_pathGroup *)ft_memalloc(sizeof(t_pathGroup));
+	env->pathGroup->groupNumber = 1;
 	env->pthGrp = NULL;
+	env->groupNb = 1;
 }
 
 

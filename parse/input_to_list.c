@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:51:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 11:48:42 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/31 18:58:54 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	input_to_list(t_env *env)
 	char	*line;
 	
 dup2(open("testfile", O_RDWR), 0);
-// dup2(open("maps/momo", O_RDWR), 0);
+// dup2(open("maps/dth", O_RDWR), 0);
 	get_next_line(0, &line);
 	env->inp = (t_inp *)malloc(sizeof(t_inp));
 	env->inp->next = NULL;

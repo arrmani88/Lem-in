@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:19:17 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/26 16:09:46 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/31 19:01:59 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,53 @@ void print_current_queue(t_queue *qu)
 	printf("\n");
 }
 
+// void print_all_paths(t_env *env)
+// {
+// 	t_ptheads *pthead;
+// 	t_path *pth;
+
+// 	pthead = env->ptheads;
+// 	while (pthead)
+// 	{
+// 		pth = pthead->path;
+// 		printf("[%d] ", pthead->ants);
+
+		// while (pth)
+		// {
+		// 	printf("%s->", pth->room->name);
+		// 	pth = pth->next;
+		// }
+// 		pthead = pthead->next;
+// 		printf("\n");
+// 	}
+// }
+
 void print_all_paths(t_env *env)
 {
-	t_ptheads *pthead;
-	t_path *pth;
+	t_pathGroup *grp;
+	t_ptheads	*head;
+	t_path		*path;
+	int headNb;
 
-	pthead = env->ptheads;
-	while (pthead)
+	grp = env->pathGroup;
+	while (grp)
 	{
-		pth = pthead->path;
-		printf("[%d] ", pthead->ants);
-
-		while (pth)
+		printf("\n\tGroupNumber=%d\n", grp->groupNumber);
+		head = grp->head;
+		headNb = 0;
+		while (head)
 		{
-			printf("%s->", pth->room->name);
-			pth = pth->next;
+			printf("___HeadNumber%d= ", ++headNb);
+			path = head->path;
+			while (path)
+			{
+				printf("%s->", path->room->name);
+				path = path->next;
+			}
+			printf("\n");
+			head = head->next;
 		}
-		pthead = pthead->next;
-		printf("\n");
+		grp = grp->next;
 	}
 }
 

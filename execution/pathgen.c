@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 11:52:48 by anel-bou         ###   ########.fr       */
+/*   Updated: 2020/12/31 18:54:24 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,12 @@ int		checkIfRoomDuplicatedInBoth(t_path *p1, t_path *p2)
 {
 	t_path *ptr;
 
-	while (p1)
+	p1 = p1->next;
+	p2 = p2->next;
+	while (p1->next)
 	{
 		ptr = p2;
-		while (ptr)
+		while (ptr->next)
 		{
 			if (p1->room == ptr->room)
 				return (1);
@@ -129,7 +131,21 @@ void	saveHeadInThisGroup(t_env *env, t_ptheads *prev, t_pathGroup **grp)
 		prev->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
 		head = prev->next;
 	}
-	head->path = env->pth;
+	head->path = env->path;
+}
+
+void	saveHeadInNewGrp(t_env *env)
+{
+	t_pathGroup *grp;
+
+	grp = env->pathGroup;
+	while (grp->next)
+		grp = grp->next;
+	grp->next = (t_pathGroup *)ft_memalloc(sizeof(t_pathGroup));
+	grp = grp->next;
+	grp->head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+	grp->head->path = env->path;
+	grp->groupNumber = ++(env->groupNb);
 }
 
 void	searchForConvenientGroup(t_env *env)
@@ -141,6 +157,7 @@ void	searchForConvenientGroup(t_env *env)
 
 	patGrp = env->pathGroup;
 	prev = NULL;
+	isAnyPathSaved = 0;
 	while (patGrp)
 	{
 		patHed = patGrp->head;
@@ -159,20 +176,6 @@ void	searchForConvenientGroup(t_env *env)
 		saveHeadInNewGrp(env);
 }
 
-void	saveHeadInNewGrp(t_env *env)
-{
-	t_pathGroup *grp;
-
-	grp = env->pathGroup;
-	while (grp->next)
-		grp = grp->next;
-	grp->next = (t_pathGroup *)ft_memalloc(sizeof(t_pathGroup));
-	grp = grp->next;
-	grp->head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-	grp->head->path = env->pth;
-
-}
-
 int		path_generator(t_env *env, t_room *start)
 {
 	t_room *rm;
@@ -186,6 +189,7 @@ int		path_generator(t_env *env, t_room *start)
 	// env->pth = (!env->second_call ? allocate_pheads(env) : select_next_path(env));
 	allocatePathHead(env);
 	papr = env->pth; /* asp */
+	env->path = env->pth;
 	env->pth->room = rm;
 	while (rm != env->end && ++i)
 	{
