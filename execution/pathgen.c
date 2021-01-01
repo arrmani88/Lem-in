@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/01 11:59:24 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/01 19:22:54 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,18 @@ t_path *allocate_pheads(t_env *env)
 	return (head->path);
 }
 
+t_room	*enumerateFromEndToStart(t_env *env, t_room *rm, t_room *start)
+{
+	int i = 0;
+	rm = env->end;
+	while (rm && rm != start && ++i)
+	{
+		rm->iterated = env->iteration_nb;
+		rm = rm->parent;
+	}
+	return(rm);
+}
+
 void	allocatePathHead(t_env *env)
 {
 	t_ptheads *head;
@@ -105,24 +117,16 @@ int		checkIfRoomDuplicatedInBoth(t_path *p1, t_path *p2)
 	return (0);
 }
 
-void	saveHeadInThisGroup(t_env *env, t_ptheads *prev, t_pathGroup **grp)
-{
-	t_ptheads *head;
 
-	if (prev == NULL) /*lakan lgrp mafih ta head (mzl khawi) */
-	{
-		(*grp)->head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-		head = (*grp)->head;
-	}
-	else /* else ser lhead lakkher w allouwi fnext dialo */
-	{
-		prev->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-		head = prev->next;
-	}
-	head->path = env->path;
-}
 
-void	saveHeadInNewGrp(t_env *env)
+
+
+
+
+
+/*********************************************************************************/
+
+void	saveHeadInNewGrp(t_env *env, int totalRoomsInPath)
 {
 	t_pathGroup *grp;
 
@@ -134,55 +138,108 @@ void	saveHeadInNewGrp(t_env *env)
 	grp->head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
 	grp->head->path = env->path;
 	grp->groupNumber = ++(env->groupNb);
+	++(grp->totalHeads);
+	grp->totalRoomsInGroup = totalRoomsInPath;
 }
 
-void	searchForConvenientGroup(t_env *env)
+void	saveHeadInThisGroup(t_env *env, t_ptheads *prev, t_pathGroup **grp, int	totalRoomsInPath)
 {
-	t_pathGroup *patGrp;
-	t_ptheads	*patHed;
+	t_ptheads *head;
+
+	if (prev == NULL) /* lakan lgrp mafih ta head (mzl khawi) */
+	{
+		(*grp)->head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+		head = (*grp)->head;
+	}
+	else /* else ser lhead lekkher w allouwi fnext dialo */
+	{
+		prev->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
+		head = prev->next;
+	}
+	head->totalRooms = totalRoomsInPath;
+	head->path = env->path;
+	++((*grp)->totalHeads);
+	(*grp)->totalRoomsInGroup += totalRoomsInPath;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+int		getGroupScore(int ants, int roomsInGrp, int heads)
+{
+	int n;
+
+	n = (int)((roomsInGrp + ants) / heads);
+	return (n);
+}
+
+void	searchForConvenientGroup(t_env *env, int totalRoomsInPath)
+{
+	t_pathGroup *grp;
+	t_ptheads	*head;
 	t_ptheads	*prev;
 	int			isAnyPathSaved;
+	int			currentScore;
 
-	patGrp = env->pathGroup;
+	currentScore = 0;
+	grp = env->pathGroup;
 	prev = NULL;
 	isAnyPathSaved = 0;
-	while (patGrp)
+	while (grp)
 	{
-		patHed = patGrp->head;
-		while (patHed)
+		head = grp->head;
+		while (head)
 		{
-			if (checkIfRoomDuplicatedInBoth(patHed->path, env->pthds->path))
+			if (checkIfRoomDuplicatedInBoth(head->path, env->pthds->path))
 				break;
-			prev = patHed;
-			patHed = patHed->next;
+			prev = head;
+			head = head->next;
 		}
-		if (patHed == NULL && ++isAnyPathSaved)
-			saveHeadInThisGroup(env, prev, &patGrp);
-		patGrp = patGrp->next;
+		currentScore = getGroupScore(env->antsnb, grp->totalRoomsInGroup + totalRoomsInPath, grp->totalHeads + 1);
+		grp->score = currentScore;
+		currentScore = -1;
+		if (head == NULL && currentScore < grp->score && ++isAnyPathSaved)
+		{
+			saveHeadInThisGroup(env, prev, &grp, totalRoomsInPath); 
+		}
+		grp = grp->next;
 	}
 	if (!isAnyPathSaved)
-		saveHeadInNewGrp(env);
+		saveHeadInNewGrp(env, totalRoomsInPath);
 }
 
-t_room	*enumerateFromEndToStart(t_env *env, t_room *rm, t_room *start)
-{
-	int i = 0;
-	rm = env->end;
-	while (rm && rm != start && ++i)
-	{
-		rm->iterated = env->iteration_nb;
-		rm = rm->parent;
-	}
-	return(rm);
-}
+/*************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
 
 int		path_generator(t_env *env, t_room *start)
 {
 	t_room *rm;
 	t_link *lnk;
+	int		totalRooms;
 
 t_path *papr; /*asp*/
 int i = 0;
+	totalRooms = 1;
 	++env->iteration_nb; /*V1*/
 	rm = enumerateFromEndToStart(env, rm, start);
 	rm->iterated = ++env->iteration_nb; /*V2*/
@@ -210,11 +267,12 @@ int i = 0;
 				env->pth->next = (t_path *)ft_memalloc(sizeof(t_path));
 			env->pth = env->pth->next;
 			env->pth->room = lnk->room;
+			++totalRooms;
 			verifyReverseLink(env, lnk, rm);
 		}
 		rm = lnk->room; /*A4*/
 	}
-	searchForConvenientGroup(env);
+	searchForConvenientGroup(env, totalRooms);
 	// delete_path_rest(env->pth);
 	// print_path(papr); /*asp*/
 	return (1);

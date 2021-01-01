@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:19:17 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/01 09:49:10 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/01 18:57:16 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,15 @@ void print_all_paths(t_env *env)
 	grp = env->pathGroup;
 	while (grp)
 	{
-		printf("\n\tGroupNumber=%d\n", grp->groupNumber);
+		printf("\033[0;32m");
+		printf("\n\tGroupNumber=[%d] <> Score=[%d] <> TotalHeads=[%d] <> RoomsInGrp=[%d]\n", grp->groupNumber, grp->score, grp->totalHeads, grp->totalRoomsInGroup);
 		head = grp->head;
 		headNb = 0;
 		while (head)
 		{
-			printf("   PATHnumber%d= ", ++headNb);
+			printf("\033[0;36m");
+			printf("   PATHnumber=%d ", ++headNb);
+			printf("\033[0;37m");
 			path = head->path;
 			while (path)
 			{
@@ -92,6 +95,7 @@ void print_all_paths(t_env *env)
 		}
 		grp = grp->next;
 	}
+	printf("\nAnts=[%d]\n", env->antsnb);
 }
 
 void print_path(t_path *path)

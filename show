@@ -1,0 +1,17 @@
+###
+[0;32m
+	GroupNumber=[1] <> Score=[20] <> TotalHeads=[1] <> RoomsInGrp=[5]
+[0;36m   PATHnumber=1 [0;37m1->4->6->9->12->
+[0;32m
+	GroupNumber=[2] <> Score=[13] <> TotalHeads=[3] <> RoomsInGrp=[17]
+[0;36m   PATHnumber=1 [0;37m1->2->5->6->10->12->
+[0;36m   PATHnumber=2 [0;37m1->4->7->13->12->
+[0;36m   PATHnumber=3 [0;37m1->0->3->8->9->12->
+[0;32m
+	GroupNumber=[3] <> Score=[23] <> TotalHeads=[1] <> RoomsInGrp=[10]
+[0;36m   PATHnumber=1 [0;37m1->0->3->8->9->6->4->7->13->12->
+[0;32m
+	GroupNumber=[4] <> Score=[0] <> TotalHeads=[1] <> RoomsInGrp=[6]
+[0;36m   PATHnumber=1 [0;37m1->2->5->6->10->12->
+
+Ants=[30]

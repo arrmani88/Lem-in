@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 18:26:06 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/01 15:47:27 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_link
 typedef struct s_ptheads
 {
 	struct s_path	*path;
+	int				totalRooms;
 	int id;
 	int len;
 	int ants;
@@ -99,6 +100,9 @@ typedef struct	s_pathGroup
 	struct s_ptheads	*head;
 	struct s_pathGroup	*next;
 	int					groupNumber;
+	int					totalRoomsInGroup;
+	int					totalHeads;
+	int					score;
 }				t_pathGroup;
 
 
