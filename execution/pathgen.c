@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/01 11:44:13 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/01 11:59:24 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,9 +215,8 @@ int i = 0;
 		rm = lnk->room; /*A4*/
 	}
 	searchForConvenientGroup(env);
-	// setPathInConvenientGroup(env);
 	// delete_path_rest(env->pth);
-	print_path(papr); /*asp*/
+	// print_path(papr); /*asp*/
 	return (1);
 }
 
@@ -236,14 +235,3 @@ void	setOnePath(t_env *env)
 
 
 // lnk->room != env->end ? lnk->room->used = 1 : 0; Va
-
-
-// void	setPathInConvenientGroup(t_env *env)
-// {
-// 	searchForConvenientGroup(env);
-// 	if (env->pathGroup == NULL)
-// 	{
-// 		env->pathGroup = (t_pathGroup*)ft_memalloc(sizeof(t_pathGroup));
-// 	}
-	
-// }
