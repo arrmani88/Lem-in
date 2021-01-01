@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:19:17 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 19:01:59 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/01 09:49:10 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void print_all_paths(t_env *env)
 		headNb = 0;
 		while (head)
 		{
-			printf("___HeadNumber%d= ", ++headNb);
+			printf("   PATHnumber%d= ", ++headNb);
 			path = head->path;
 			while (path)
 			{

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:01:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 18:40:13 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/01 11:44:35 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		bfs(t_env *env, int follow, t_room *start)
 	t_queue	*tmp;
 	int		rpt;
 	int		altern;
-
 	rpt = 0;
 	altern = 0;
 	++env->iteration_nb;

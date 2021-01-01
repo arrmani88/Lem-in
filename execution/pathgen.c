@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 18:54:24 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/01 11:44:13 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,6 @@ void	verifyReverseLink(t_env *env, t_link *lnk, t_room *rm)
 			env->retry = 1;
 		}
 	}
-}
-
-t_room	*enumerateFromEndToStart(t_env *env, t_room *rm, t_room *start)
-{
-	int i = 0;
-	rm = env->end;
-	while (rm && rm != start && ++i)
-	{
-		rm->iterated = env->iteration_nb;
-		rm = rm->parent;
-	}
-	return(rm);
 }
 
 t_path	*select_next_path(t_env *env)
@@ -176,13 +164,25 @@ void	searchForConvenientGroup(t_env *env)
 		saveHeadInNewGrp(env);
 }
 
+t_room	*enumerateFromEndToStart(t_env *env, t_room *rm, t_room *start)
+{
+	int i = 0;
+	rm = env->end;
+	while (rm && rm != start && ++i)
+	{
+		rm->iterated = env->iteration_nb;
+		rm = rm->parent;
+	}
+	return(rm);
+}
+
 int		path_generator(t_env *env, t_room *start)
 {
 	t_room *rm;
 	t_link *lnk;
-	t_path *papr; /*asp*/
 
-	int i = 0;
+t_path *papr; /*asp*/
+int i = 0;
 	++env->iteration_nb; /*V1*/
 	rm = enumerateFromEndToStart(env, rm, start);
 	rm->iterated = ++env->iteration_nb; /*V2*/
@@ -194,7 +194,7 @@ int		path_generator(t_env *env, t_room *start)
 	while (rm != env->end && ++i)
 	{
 		lnk = rm->link;
-		while (lnk->room->iterated != env->iteration_nb - 1)
+		while (lnk->room->iterated != env->iteration_nb - 1 || lnk->room->parent != rm)
 			lnk = lnk->next;
 		if (lnk->room->iterated == env->iteration_nb - 1 /*>3*/)
 		{
