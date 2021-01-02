@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/02 11:30:06 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:17:13 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void	saveHeadInNewGrp(t_env *env, int totalRoomsInPath)
 	grp->groupNumber = ++(env->groupNb);
 	++(grp->totalHeads);
 	grp->totalRoomsInGroup = totalRoomsInPath;
+	grp->score = totalRoomsInPath + 1;
 }
 
 void	saveHeadInThisGroup(t_env *env, t_ptheads *prev, t_pathGroup **grp, int	totalRoomsInPath)
@@ -190,9 +191,9 @@ void	searchForConvenientGroup(t_env *env, int totalRoomsInPath)
 	int			isAnyPathSaved;
 	int			currentScore;
 
-	currentScore = 0;
 	grp = env->pathGroup;
 	prev = NULL;
+	currentScore = 0;
 	isAnyPathSaved = 0;
 	while (grp)
 	{
@@ -211,6 +212,11 @@ void	searchForConvenientGroup(t_env *env, int totalRoomsInPath)
 			{
 				saveHeadInThisGroup(env, prev, &grp, totalRoomsInPath);
 				grp->score = currentScore;
+				if (currentScore < env->bestScore)
+				{
+					env->bestScore = currentScore;
+					env->bestGroup = grp;
+				}
 			}
 		}
 		grp = grp->next;

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 10:11:06 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 17:30:30 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:13:06 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void    initialize_var(t_env *env)
 	env->pathGroup->groupNumber = 1;
 	env->pthGrp = NULL;
 	env->groupNb = 1;
+	env->bestScore = __INT_MAX__;
 }
 
 

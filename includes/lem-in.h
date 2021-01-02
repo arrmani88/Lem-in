@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:56:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/01 15:47:27 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:03:22 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_env
 	t_link		*lnk;	 //24
 	t_pathGroup	*pathGroup; //24
 	t_pathGroup	*pthGrp; //24
+	t_pathGroup	*bestGroup; //24
 	t_ptheads	*ptheads;//16
 	t_ptheads	*pthds;	 //16
 	t_path		*path;	 //16
@@ -132,6 +133,7 @@ typedef struct s_env
 	int			section;
 	int			startEndLinked;
 	int			groupNb;
+	int			bestScore;
 }				t_env;
 
 void	liberate_memory();

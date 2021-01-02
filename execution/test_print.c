@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 13:19:17 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/01 18:57:16 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:11:56 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void print_all_paths(t_env *env)
 		grp = grp->next;
 	}
 	printf("\nAnts=[%d]\n", env->antsnb);
+	printf("BestGroup=[%d]\n", env->bestGroup->groupNumber);
 }
 
 void print_path(t_path *path)
