@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/01 19:22:54 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 11:30:06 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void	saveHeadInThisGroup(t_env *env, t_ptheads *prev, t_pathGroup **grp, int	tot
 
 
 
-int		getGroupScore(int ants, int roomsInGrp, int heads)
+int		getGroupScore(int ants, int roomsInGrp, int heads, t_pathGroup *grp)
 {
 	int n;
 
@@ -204,12 +204,14 @@ void	searchForConvenientGroup(t_env *env, int totalRoomsInPath)
 			prev = head;
 			head = head->next;
 		}
-		currentScore = getGroupScore(env->antsnb, grp->totalRoomsInGroup + totalRoomsInPath, grp->totalHeads + 1);
-		grp->score = currentScore;
-		currentScore = -1;
-		if (head == NULL && currentScore < grp->score && ++isAnyPathSaved)
+		if (head == NULL && ++isAnyPathSaved)
 		{
-			saveHeadInThisGroup(env, prev, &grp, totalRoomsInPath); 
+			currentScore = getGroupScore(env->antsnb, grp->totalRoomsInGroup + totalRoomsInPath, grp->totalHeads + 1, grp);
+			if (currentScore < grp->score || grp->score == 0)
+			{
+				saveHeadInThisGroup(env, prev, &grp, totalRoomsInPath);
+				grp->score = currentScore;
+			}
 		}
 		grp = grp->next;
 	}
