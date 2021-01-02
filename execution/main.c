@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 16:17:02 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/31 17:19:38 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:42:40 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,9 @@ int i = 0;
 			opt.antsnb = env->antsnb;
 			opt.antsnb_org = env->antsnb;
 			opt.nbrpaths = env->nbrpaths;
-
 			ft_move_ants_trip(env->bestGroup->head, env->bestGroup->head, opt, 1, &i);
 		}
 	}
-	printf("Number of instructions=[%d]\n", i); /*delete variable "i" men func move ants trip*/
+	printf("Number of instructions=[%d]\n", i - 1); /*delete variable "i" men func move ants trip*/
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:01:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/01 11:44:35 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:48:05 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ int		bfs(t_env *env, int follow, t_room *start)
 			&& env->lnk->flow == follow && env->lnk->room->full != 2)
 			{
 				env->lnk->room->set_last ? env->lnk->room->set_last = 0 : 0; /*VA*/
-				if (env->lnk->room->full == 1 && !rpt)
-				{
-					env->lnk->room->set_last = 1;
-					altern = 1;
-				}
-				else if ((env->lnk->room->full == 1 && rpt) || (env->lnk->room->full == 0 && !rpt))
+				// if (env->lnk->room->full == 1 && !rpt)
+				// {
+				// 	env->lnk->room->set_last = 1;
+				// 	altern = 1;
+				// }
+				if ((env->lnk->room->full == 1 && rpt) || (env->lnk->room->full == 0 && !rpt))
 				{
 					save_parent(env, first->room);
 					env->lnk->room->iterated = env->iteration_nb;
@@ -78,11 +78,11 @@ int		bfs(t_env *env, int follow, t_room *start)
 			if (env->lnk->room == env->end && env->lnk->flow == follow)
 				return(path_generator(env, start)); /* freei dak 7zaq lte7t */
 			env->lnk = env->lnk->next;
-			if (env->lnk == NULL && !rpt && altern)
-			{
-				rpt = 1;
-				env->lnk = first->room->link;
-			}
+			// if (env->lnk == NULL && !rpt && altern)
+			// {
+			// 	rpt = 1;
+			// 	env->lnk = first->room->link;
+			// }
 		}
 		rpt = 0;
 		altern = 0;

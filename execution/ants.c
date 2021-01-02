@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 09:59:34 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/28 15:09:12 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 16:42:58 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int st
     {
         ft_move_ants_lip(paths, &opt);
         ft_putendl("");
+// ft_putstr("----[");
+// ft_putnbr(*i);
+// ft_putstr("]----");
         (*i)++;
     }
     
