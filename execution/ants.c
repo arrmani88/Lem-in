@@ -23,7 +23,7 @@ void ft_calc_ants(t_env *env)
 
 	meanlen = (env->antsnb + env->totallen) / env->nbrpaths;
 	mod = (env->antsnb + env->totallen) % env->nbrpaths;
-    tmp = env->ptheads;
+    tmp = env->bestGroup->head;
     prev = tmp;
     i = -1;
 	while (++i < env->nbrpaths && tmp)
@@ -70,7 +70,11 @@ int ft_print_ants(t_path *path, int *flag)
     if (ret != 2 && path->ant_id > 0)
     {
         path->status = PRINTED;
-        printf("L%u-%s ", path->ant_id, path->room->name);
+        ft_putstr("L");
+        ft_putnbr(path->ant_id);
+        ft_putstr("-");
+        ft_putstr(path->room->name);
+        ft_putstr(" ");
         return (2);
     }
     else if (path->ant_id > 0 && path->status != PRINTED)
@@ -99,7 +103,7 @@ void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int st
     if (!(pivot->next) && !(opt.flag))
     {
         ft_move_ants_lip(paths, &opt);
-        printf("\n");
+        ft_putendl("");
         (*i)++;
     }
     
@@ -156,7 +160,7 @@ void ft_select_paths(t_env *env, t_ptheads *current, int avg_len)
 {
     if (!current)
         return ;
-    current->len = ft_links_lenght(current->path) - 2;
+    current->len = current->totalRooms - 2;
     if (!ft_select_path(env, current->len, avg_len))
         return ;
     if (avg_len == 0)

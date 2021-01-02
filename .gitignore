@@ -1,9 +1,0 @@
-**/*.o
-**/*cache*
-**/.DS_Store
-lem-in.dSYM
-py.py
-CookBook.zip
-vlgout
-prog.c
-lines

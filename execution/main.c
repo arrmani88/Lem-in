@@ -47,17 +47,16 @@ int i = 0;
 		}
 		else if (env->startEndLinked)
 			setOnePath(env);
-printf("###\n");print_all_paths(env); exit(0);
+// printf("###\n");print_all_paths(env); exit(0);
 		tmp = env->inp;
 		while (tmp)
 		{
 			ft_putendl(tmp->line);
 			tmp = tmp->next;
 		}
-		if (env->ptheads && env->antsnb)
+		if (env->bestGroup && env->bestGroup->head && env->antsnb)
 		{
-
-			ft_select_paths(env, env->ptheads, 0);
+			ft_select_paths(env, env->bestGroup->head, 0);
 			ft_calc_ants(env);
 
 			opt.id = 0;
@@ -66,7 +65,8 @@ printf("###\n");print_all_paths(env); exit(0);
 			opt.antsnb = env->antsnb;
 			opt.antsnb_org = env->antsnb;
 			opt.nbrpaths = env->nbrpaths;
-			ft_move_ants_trip(env->ptheads, env->ptheads, opt, 1, &i);
+
+			ft_move_ants_trip(env->bestGroup->head, env->bestGroup->head, opt, 1, &i);
 		}
 	}
 	printf("Number of instructions=[%d]\n", i); /*delete variable "i" men func move ants trip*/
