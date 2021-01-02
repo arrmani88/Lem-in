@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 10:22:01 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/02 12:17:13 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/02 12:20:06 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,15 +117,6 @@ int		checkIfRoomDuplicatedInBoth(t_path *p1, t_path *p2)
 	return (0);
 }
 
-
-
-
-
-
-
-
-/*********************************************************************************/
-
 void	saveHeadInNewGrp(t_env *env, int totalRoomsInPath)
 {
 	t_pathGroup *grp;
@@ -162,18 +153,6 @@ void	saveHeadInThisGroup(t_env *env, t_ptheads *prev, t_pathGroup **grp, int	tot
 	++((*grp)->totalHeads);
 	(*grp)->totalRoomsInGroup += totalRoomsInPath;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 int		getGroupScore(int ants, int roomsInGrp, int heads, t_pathGroup *grp)
 {
@@ -224,20 +203,6 @@ void	searchForConvenientGroup(t_env *env, int totalRoomsInPath)
 	if (!isAnyPathSaved)
 		saveHeadInNewGrp(env, totalRoomsInPath);
 }
-
-/*************************************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
 
 int		path_generator(t_env *env, t_room *start)
 {
