@@ -95,10 +95,12 @@ OBJ = ft_abs.o\
 		ft_table3_len.o\
 		ft_tolower.o\
 		ft_toupper.o\
+		get_next_line.o\
+		my_get_next_line.o\
 
 all: $(NAME)
 
-$(NAME): $(OBJ) libft.h
+$(NAME): $(OBJ) libft.h get_next_line.h
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 

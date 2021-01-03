@@ -14,9 +14,8 @@
 #define LEM_IN_H
 
 #include "../libft/libft.h"
-#include "../gnl/get_next_line.h"
-
-#include <stdio.h> /* a supprimer */
+#include "../libft/get_next_line.h"
+#include <stdio.h>
 
 #define ERROR	-1
 #define INP_END	0
@@ -78,7 +77,7 @@ typedef struct	s_room
 	int				y;
 	int				iterated;
 	int				childnb;
-	int				used; /* asup */
+	int				used;
 	int				full;
 	int				set_last;
 	int				dept_layer;
@@ -108,19 +107,19 @@ typedef struct	s_pathGroup
 
 typedef struct s_env
 {
-	t_room		**room;	 //72
-	t_room		*start;	 //72
-	t_room		*end;	 //72
-	t_room		*ptr;	 //72
-	t_link		*lnk;	 //24
-	t_pathGroup	*pathGroup; //24
-	t_pathGroup	*pthGrp; //24
-	t_pathGroup	*bestGroup; //24
-	t_ptheads	*ptheads;//16
-	t_ptheads	*pthds;	 //16
-	t_path		*path;	 //16
-	t_path		*pth;	 //16
-	t_inp		*inp;	 //16
+	t_room		**room;	 
+	t_room		*start;	 
+	t_room		*end;	 
+	t_room		*ptr;	 
+	t_link		*lnk;	 
+	t_pathGroup	*pathGroup; 
+	t_pathGroup	*pthGrp; 
+	t_pathGroup	*bestGroup; 
+	t_ptheads	*ptheads;
+	t_ptheads	*pthds;	 
+	t_path		*path;	 
+	t_path		*pth;	 
+	t_inp		*inp;	 
 	char		*tmp;
 	int			antsnb;
 	int			iteration_nb;
@@ -149,18 +148,11 @@ void	delete_heads_rest(t_ptheads *pthds);
 void	delete_path_rest(t_path *ptr);
 void	set_antsnb(t_inp **inp, t_env *env);
 
-/*************** functions to test ******************/
-void	test_loop(t_env *env, char *name);
-void	print_current_queue(t_queue *qu);
-void	print_path(t_path *path);
-void	print_all_paths(t_env *env);
-/*************** functions to test ******************/
-
 void ft_calc_ants(t_env *env);
 int ft_select_path(t_env *env, int next_len, int avg_len);
 void ft_select_paths(t_env *env, t_ptheads *current, int avg_len);
 void ft_move_ants_lip(t_ptheads *path, t_ant_opt *opt);
-void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int start, int *i);
+void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int start);
 int ft_print_ants(t_path *path, int *flag);
 
 int		ft_str_is_num(char *str);
@@ -172,7 +164,3 @@ void	MoveBackToFirstPossibleStart(t_env *env, t_room *room);
 void	verifyReverseLink(t_env *env, t_link *lnk, t_room *rm);
 
 #endif
-
-// file:loop1 khaso y3ti error
-// file:buggy instruction wehda
-// file:segf
