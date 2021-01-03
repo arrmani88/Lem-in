@@ -135,7 +135,7 @@ typedef struct s_env
 	int			bestScore;
 }				t_env;
 
-void	liberate_memory();
+void	liberate_memory(t_env *env);
 int		check_error(t_inp **inp, char **line, int *section);
 void	input_to_list(t_env *env);
 int		save_input(t_env *env);
