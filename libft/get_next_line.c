@@ -1,34 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/03 15:31:00 by anel-bou          #+#    #+#             */
+/*   Updated: 2021/01/03 15:31:15 by anel-bou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-# define BUFFSZ 1000
-# define L 5000
-# define TMP 5001
-# define BS BUFFSZ
+int	ft_distrub(char *buff, char **line, char **cache)
+{
+	char	*swp;
+
+	if (ft_strchr(buff, '\n') != NULL)
+	{
+		swp = *line;
+		*line = ft_strnjoin(*line, buff, ft_clettercount(buff, '\n'));
+		ft_strdel(&swp);
+		swp = *cache;
+		*cache = ft_strdup(ft_strchr(buff, '\n') + 1);
+		ft_strdel(&swp);
+		return (1);
+	}
+	else if (ft_strchr(buff, '\n') == NULL)
+	{
+		swp = *line;
+		*line = ft_strjoin(*line, buff);
+		buff[0] = 0;
+		ft_strdel(&swp);
+	}
+	return (0);
+}
 
 int	get_next_line(const int fd, char **line)
 {
-	int			r;
-	char		b[BUFFSZ + 1];
-	static char	*re[5002];
+	static t_list	*head;
+	t_list			*cache;
+	char			buff[BUFF_SIZE + 1];
+	int				ret;
 
-	if (!line || fd < 0 || fd > L || !(re[fd] = re[fd] ? re[fd] : ft_strnew(0)))
+	if (fd < 0 || line == NULL || read(fd, NULL, 0) < 0)
 		return (-1);
-	r = 1;
-	while (!(re[L] = ft_strchr(re[fd], '\n')) &&
-			(r = read(fd, b, BS)) > 0)
+	if (!head && (head = ft_lstnew("\0", fd)) == NULL)
+		return (-1);
+	cache = head;
+	if (cache->content_size != (size_t)fd)
+		cache = ft_lst_nb_chr_n_add(&head, fd);
+	*line = ft_strdup("\0");
+	if (CC && ft_distrub(CC, line, (char **)&(CC)) == 1)
+		return (1);
+	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		re[TMP] = re[fd];
-		b[r] = 0;
-		re[fd] = ft_strjoin(re[fd], b);
-		free(re[TMP]);
-		if (!re[fd])
-			return (-1);
+		buff[ret] = '\0';
+		if (ft_distrub(buff, line, (char **)&(CC)) == 1)
+			return (1);
 	}
-	*line = ft_strsub(re[fd], 0, (re[L] ? re[L] - re[fd] : ft_strlen(re[fd])));
-	re[TMP] = re[fd];
-	re[fd] = r > 0 ? ft_strdup(re[L] + 1) : NULL;
-	free(re[TMP]);
-	if ((!re[fd] && re[L] && re[L][1]) || !*line)
-		return (-1);
-	return (**line || re[L] ? 1 + (r == 0) : r);
+	return ((ft_strlen(*line) != 0) ? 1 : 0);
 }

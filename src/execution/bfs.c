@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 17:01:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/02 16:48:05 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/01/03 15:35:44 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,45 +82,4 @@ int		bfs(t_env *env, int follow, t_room *start)
 	if (!env->lnk)
 		return (0);
 	return (path_generator(env, start));
-}
-
-void	MoveBackToFirstPossibleStart(t_env *env, t_room *room)
-{
-	t_link	*lnk;
-	t_room	*rm;
-	
-	env->retry = 1;
-	lnk = room->link;
-	while (lnk && ((lnk->room->dept_layer >= room->dept_layer && !lnk->room->full ) || lnk->room == env->start))
-		{ lnk = lnk->next;}
-	if (lnk == NULL)
-		return ;
-
-	rm = lnk->room;
-	while (rm->full && rm != env->start)
-	{
-		lnk = rm->link;
-		while (lnk && (lnk->room->full || lnk->room == env->start))
-			lnk = lnk->next;
-		if (lnk && !lnk->room->full)
-		{
-			room->correctionRoom = 1;
-			bfs(env, 0, rm); return;
-		}
-		
-		lnk = rm->link;
-		while (lnk && ((lnk->room->dept_layer > rm->dept_layer && !lnk->room->full) || lnk->room == env->start))
-			lnk = lnk->next;
-		if (lnk && !lnk->room->full)
-		{
-			room->correctionRoom = 1;
-			bfs(env, 0, rm);
-			return;
-		}
-
-		if (lnk && lnk->room->full)
-			rm = lnk->room;
-		else 
-			return ;
-	}
 }

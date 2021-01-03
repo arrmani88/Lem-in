@@ -6,7 +6,7 @@
 #    By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/01 11:22:12 by anel-bou          #+#    #+#              #
-#    Updated: 2019/10/25 18:07:37 by anel-bou         ###   ########.fr        #
+#    Updated: 2021/01/03 15:31:53 by anel-bou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,6 @@ OBJ = ft_abs.o\
 		ft_tolower.o\
 		ft_toupper.o\
 		get_next_line.o\
-		my_get_next_line.o\
 
 all: $(NAME)
 
