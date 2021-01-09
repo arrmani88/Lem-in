@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 16:17:02 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/02 16:42:40 by anel-bou         ###   ########.fr       */
+/*   Created: 2021/01/09 17:07:13 by youarzaz          #+#    #+#             */
+/*   Updated: 2021/01/09 17:07:18 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	search4paths(t_env *env, int follow)
 
 void	print_input(t_inp **input)
 {
-	t_inp 	*tmp;
-	t_inp 	*prev;
+	t_inp	*tmp;
+	t_inp	*prev;
 
 	tmp = *input;
 	while (tmp)
@@ -41,10 +41,24 @@ void	print_input(t_inp **input)
 	}
 }
 
-int		main()
+void	main_c2(t_env *env)
 {
-	t_env	env;
-	t_ant_opt opt;
+	t_ant_opt	opt;
+
+	ft_select_paths(env, env->bestGroup->head, 0);
+	ft_calc_ants(env);
+	opt.id = 0;
+	opt.ret = 0;
+	opt.flag = 0;
+	opt.antsnb = env->antsnb;
+	opt.antsnb_org = env->antsnb;
+	opt.nbrpaths = env->nbrpaths;
+	ft_move_ants_trip(env->bestGroup->head, env->bestGroup->head, opt);
+}
+
+int		main(void)
+{
+	t_env		env;
 
 	initialize_var(&env);
 	input_to_list(&env);
@@ -54,24 +68,15 @@ int		main()
 	{
 		if (!env.startEndLinked)
 		{
-			setDeptLayers(&env);
+			set_dept_layers(&env);
 			search4paths(&env, 0);
 		}
 		else if (env.startEndLinked)
-			setOnePath(&env);
+			set_one_path(&env);
 		print_input(&(env.inp));
 		if (env.bestGroup && env.bestGroup->head && env.antsnb)
 		{
-			ft_select_paths(&env, env.bestGroup->head, 0);
-			ft_calc_ants(&env);
-
-			opt.id = 0;
-			opt.ret = 0;
-			opt.flag = 0;
-			opt.antsnb = env.antsnb;
-			opt.antsnb_org = env.antsnb;
-			opt.nbrpaths = env.nbrpaths;
-			ft_move_ants_trip(env.bestGroup->head, env.bestGroup->head, opt, 1);
+			main_c2(&env);
 		}
 	}
 	liberate_memory(&env);

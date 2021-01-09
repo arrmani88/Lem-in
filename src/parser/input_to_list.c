@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_to_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/19 16:51:04 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/02 11:30:16 by anel-bou         ###   ########.fr       */
+/*   Created: 2021/01/09 16:48:40 by youarzaz          #+#    #+#             */
+/*   Updated: 2021/01/09 16:48:49 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	input_to_list(t_env *env)
 {
 	t_inp	*ptr;
 	char	*line;
-	
+
 	get_next_line(0, &line);
 	env->inp = (t_inp *)malloc(sizeof(t_inp));
 	env->inp->next = NULL;

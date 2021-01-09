@@ -51,7 +51,7 @@ typedef struct	s_link
 typedef struct s_ptheads
 {
 	struct s_path	*path;
-	int				totalRooms;
+	int				total_rooms;
 	int id;
 	int len;
 	int ants;
@@ -99,11 +99,54 @@ typedef struct	s_pathGroup
 	struct s_ptheads	*head;
 	struct s_pathGroup	*next;
 	int					groupNumber;
-	int					totalRoomsInGroup;
+	int					total_roomsInGroup;
 	int					totalHeads;
 	int					score;
 }				t_pathGroup;
 
+typedef struct	s_norm_sp
+{
+	unsigned int	i;
+	unsigned int	meanlen;
+	int				totallen;
+	int				mod;
+	int				ret;
+	t_ptheads		*tmp;
+}				t_norm_sp;
+
+typedef struct	s_norm_bfs
+{
+	t_queue	*last;
+	t_queue	*first;
+	t_queue	*tmp;
+	int		rpt;
+	int		altern;
+}				t_norm_bfs;
+
+typedef struct	s_norm_sfcg
+{
+	t_pathGroup *grp;
+	t_ptheads	*prev;
+	int			is_any_path_saved;
+	int			current_score;
+}				t_norm_sfcg;
+
+typedef struct	s_norm_pg
+{
+	t_room	*rm;
+	t_link	*lnk;
+	int		total_rooms;
+	t_path	*papr;
+}				t_norm_pg;
+
+typedef struct	s_norm_sdl
+{
+	t_queue	*last;
+	t_queue	*first;
+	t_queue	*tmp;
+	t_link	*lnk;
+	int		dept;
+}				t_norm_sdl;
 
 typedef struct s_env
 {
@@ -126,7 +169,7 @@ typedef struct s_env
 	int			nbrooms;
 	int			retry;
 	int			second_call;
-	int			nbrpaths;
+	unsigned int	nbrpaths;
 	int			totallen;
 	int			index;
 	int			section;
@@ -152,15 +195,27 @@ void ft_calc_ants(t_env *env);
 int ft_select_path(t_env *env, int next_len, int avg_len);
 void ft_select_paths(t_env *env, t_ptheads *current, int avg_len);
 void ft_move_ants_lip(t_ptheads *path, t_ant_opt *opt);
-void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt, int start);
+void ft_move_ants_trip(t_ptheads *paths, t_ptheads *pivot, t_ant_opt opt);
 int ft_print_ants(t_path *path, int *flag);
 
 int		ft_str_is_num(char *str);
 int		ft_str_is_name(char *str);
 
-void	setOnePath(t_env *env);
-void    setDeptLayers(t_env *env);
+void	set_one_path(t_env *env);
+void    set_dept_layers(t_env *env);
 void	MoveBackToFirstPossibleStart(t_env *env, t_room *room);
-void	verifyReverseLink(t_env *env, t_link *lnk, t_room *rm);
+void	verify_reverse_link(t_env *env, t_link *lnk, t_room *rm);
+
+void	ft_free_doubld_table(char ***table);
+void	fill_link(t_env *env, char *line);
+void	fill_room(t_env *env, char *str, int msg);
+void	ft_move_ants(t_path *path, int *antsnb);
+int		check_if_room_duplicated_in_both(t_path *p1, t_path *p2);
+int		get_group_score(int ants, int rooms_in_grp, int heads);
+void	save_head_in_this_group(t_env *env, t_ptheads *prev, t_pathGroup **grp, int	total_rooms_in_path);
+t_room	*enumerate_from_end_to_start(t_env *env, t_room *start);
+void	allocate_path_head(t_env *env);
+t_path *allocate_pheads(t_env *env);
+void	save_head_in_new_grp(t_env *env, int total_rooms_in_path);
 
 #endif

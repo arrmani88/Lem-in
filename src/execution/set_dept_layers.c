@@ -3,47 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   set_dept_layers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/27 10:18:10 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/27 15:35:53 by anel-bou         ###   ########.fr       */
+/*   Created: 2021/01/09 17:07:32 by youarzaz          #+#    #+#             */
+/*   Updated: 2021/01/09 17:07:36 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-void    setDeptLayers(t_env *env)
+void	set_dept_layers_c2(t_env *env, t_norm_sdl *sdl)
 {
-	t_queue *last;
-	t_queue	*first;
-	t_queue	*tmp;
-	t_link  *lnk;
-	int		dept;
-
-	dept = 2;
-	last = (t_queue*)malloc(sizeof(t_queue));
-	last->room = env->start;
-	last->next = NULL;
-	first = last;
+	sdl->dept = 2;
+	sdl->last = (t_queue*)malloc(sizeof(t_queue));
+	sdl->last->room = env->start;
+	sdl->last->next = NULL;
+	sdl->first = sdl->last;
 	env->start->dept_layer = 1;
-	while (first)
+}
+
+void	set_dept_layers(t_env *env)
+{
+	t_norm_sdl sdl;
+
+	set_dept_layers_c2(env, &sdl);
+	while (sdl.first)
 	{
-		lnk = first->room->link;
-		while (lnk)
+		sdl.lnk = sdl.first->room->link;
+		while (sdl.lnk)
 		{
-			if (lnk->room->dept_layer == -1)
+			if (sdl.lnk->room->dept_layer == -1)
 			{
-				lnk->room->dept_layer = dept;
-				last->next = (t_queue *)malloc(sizeof(t_queue));
-				last = last->next;
-				last->room = lnk->room;
-				last->next = NULL;
+				sdl.lnk->room->dept_layer = sdl.dept;
+				sdl.last->next = (t_queue *)malloc(sizeof(t_queue));
+				sdl.last = sdl.last->next;
+				sdl.last->room = sdl.lnk->room;
+				sdl.last->next = NULL;
 			}
-			lnk = lnk->next;
+			sdl.lnk = sdl.lnk->next;
 		}
-		dept++;
-		tmp = first->next;
-		ft_memdel((void **)&first);
-		first = tmp;
+		sdl.dept++;
+		sdl.tmp = sdl.first->next;
+		ft_memdel((void **)&(sdl.first));
+		sdl.first = sdl.tmp;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_var.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 10:11:06 by anel-bou          #+#    #+#             */
-/*   Updated: 2021/01/02 12:13:06 by anel-bou         ###   ########.fr       */
+/*   Created: 2021/01/09 16:48:28 by youarzaz          #+#    #+#             */
+/*   Updated: 2021/01/09 16:48:33 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	set_first_ch(t_env *env)
 	}
 }
 
-void    initialize_var(t_env *env)
+void	initialize_var(t_env *env)
 {
 	env->antsnb = 0;
 	env->pthds = NULL;
@@ -43,4 +43,44 @@ void    initialize_var(t_env *env)
 	env->pthGrp = NULL;
 	env->groupNb = 1;
 	env->bestScore = __INT_MAX__;
+}
+
+int		ft_str_is_num(char *str)
+{
+	int i;
+	int len;
+
+	i = -1;
+	len = ft_strlen(str);
+	while (str[++i])
+		if (!ft_isdigit(str[i]))
+			return (0);
+	if (len > 19 || len == 0)
+		return (0);
+	return (1);
+}
+
+int		ft_str_is_name(char *str)
+{
+	int i;
+
+	i = -1;
+	if (str[0] == '#' || str[0] == 'L')
+		return (0);
+	while (str[++i])
+		if (!ft_isprint(str[i]))
+			return (0);
+	return (1);
+}
+
+int		get_index(int max, char *str)
+{
+	int res;
+	int	i;
+
+	res = 0;
+	i = -1;
+	while (str[++i])
+		res += str[i];
+	return (res %= max);
 }

@@ -3,25 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   save_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/14 18:34:56 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/12/27 17:15:47 by anel-bou         ###   ########.fr       */
+/*   Created: 2021/01/09 16:49:10 by youarzaz          #+#    #+#             */
+/*   Updated: 2021/01/09 16:49:14 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem-in.h"
 
-int		get_index(int max, char *str)
+void	fill_room_c1(t_env *env, char *str, int msg, int i)
 {
-	int res;
-	int	i;
-
-	res = 0;
-	i = -1;
-	while (str[++i])
-		res += str[i];
-	return (res %= max);
+	env->ptr->next = NULL;
+	msg == START ? env->start = env->ptr : 0;
+	msg == END ? env->end = env->ptr : 0;
+	env->ptr->name = env->tmp;
+	env->ptr->x = ft_atoi(&str[i]);
+	while (str[++i] && str[i] != ' ')
+		;
+	env->ptr->y = ft_atoi(&str[i]);
+	env->ptr->iterated = 0;
+	env->ptr->used = 0;
+	env->ptr->full = 0;
+	env->ptr->link = NULL;
+	env->ptr->parent = NULL;
+	env->ptr->set_last = 0;
+	env->ptr->dept_layer = -1;
+	env->ptr->correctionRoom = 0;
 }
 
 void	fill_room(t_env *env, char *str, int msg)
@@ -47,22 +55,7 @@ void	fill_room(t_env *env, char *str, int msg)
 		env->ptr->next = (t_room *)malloc(sizeof(t_room));
 		env->ptr = env->ptr->next;
 	}
-	env->ptr->next = NULL;
-	msg == START ? env->start = env->ptr : 0;
-	msg == END ? env->end = env->ptr : 0;
-	env->ptr->name = env->tmp;
-	env->ptr->x = ft_atoi(&str[i]);
-	while (str[++i] && str[i] != ' ')
-		;
-	env->ptr->y = ft_atoi(&str[i]);
-	env->ptr->iterated = 0;
-	env->ptr->used = 0;
-	env->ptr->full = 0;
-	env->ptr->link = NULL;
-	env->ptr->parent = NULL;
-	env->ptr->set_last = 0;
-	env->ptr->dept_layer = -1;
-	env->ptr->correctionRoom = 0;
+	fill_room_c1(env, str, msg, i);
 }
 
 void	link_two_rooms(t_env *env, char *rm1, char *rm2)
@@ -88,7 +81,7 @@ void	link_two_rooms(t_env *env, char *rm1, char *rm2)
 	}
 	env->lnk->room = get_room(env, rm2);
 	if ((room1 == env->start && env->lnk->room == env->end) ||
-		(room1 == env->end   && env->lnk->room == env->start))
+		(room1 == env->end && env->lnk->room == env->start))
 		env->startEndLinked = 1;
 	env->lnk->next = NULL;
 	env->lnk->flow = 0;
@@ -96,9 +89,9 @@ void	link_two_rooms(t_env *env, char *rm1, char *rm2)
 
 void	fill_link(t_env *env, char *line)
 {
-	char *rm1;
-	char *rm2;
-	int i;
+	char	*rm1;
+	char	*rm2;
+	int		i;
 
 	i = -1;
 	while (line[++i] && line[i] != '-')
@@ -108,50 +101,4 @@ void	fill_link(t_env *env, char *line)
 	link_two_rooms(env, rm1, rm2);
 	link_two_rooms(env, rm2, rm1);
 	ft_strdel(&rm1);
-}
-
-void	set_antsnb(t_inp **inp, t_env *env)
-{
-	env->antsnb = ft_atoi((*inp)->line);
-	*inp = (*inp)->next;
-}
-
-int		save_input(t_env *env)
-{
-	t_inp	*ptr;
-	char	*line;
-	int		msg;
-
-	env->room = (t_room **)malloc(sizeof(t_room *) * env->nbrooms);
-	ft_bzero((t_room **)env->room, sizeof(t_room *) * env->nbrooms);
-	ptr = env->inp;
-	env->section = 1;
-	env->antsnb = 0;
-	env->index = 0;
-	if (!ft_str_is_num(ptr->line))
-		return (0);
-	set_antsnb(&ptr, env);
-	while (ptr && (msg = check_error(&ptr, &line, &(env->section))))
-	{
-		if ((msg == END && env->end) || (msg == START && env->start))
-			return (0);
-		if (msg == ERROR && env->section == 2)
-			break;
-		else if (msg == ERROR)
-			return (0);
-		else if (msg == ROOM || msg == END || msg == START)
-			fill_room(env, line, msg);
-		ptr = ptr->next;
-	}
-	if (!env->end || !env->start)
-		return (0);
-	while (ptr && (msg = check_error(&ptr, &line, &(env->section))))
-	{
-		if (msg == ERROR)
-			return (0);
-		else if (msg == LINK)
-			fill_link(env, line);
-		ptr = ptr->next;
-	}
-	return (1);
 }
