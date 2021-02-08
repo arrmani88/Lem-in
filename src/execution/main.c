@@ -45,7 +45,7 @@ void	main_c2(t_env *env)
 {
 	t_ant_opt	opt;
 
-	ft_select_paths(env, env->bestGroup->head, 0);
+	ft_select_paths(env, env->best_group->head, 0);
 	ft_calc_ants(env);
 	opt.id = 0;
 	opt.ret = 0;
@@ -53,7 +53,7 @@ void	main_c2(t_env *env)
 	opt.antsnb = env->antsnb;
 	opt.antsnb_org = env->antsnb;
 	opt.nbrpaths = env->nbrpaths;
-	ft_move_ants_trip(env->bestGroup->head, env->bestGroup->head, opt);
+	ft_move_ants_trip(env->best_group->head, env->best_group->head, opt);
 }
 
 int		main(void)
@@ -66,15 +66,15 @@ int		main(void)
 		ft_putendl_fd("ERROR", 2);
 	else
 	{
-		if (!env.startEndLinked)
+		if (!env.start_end_linked)
 		{
 			set_dept_layers(&env);
 			search4paths(&env, 0);
 		}
-		else if (env.startEndLinked)
+		else if (env.start_end_linked)
 			set_one_path(&env);
 		print_input(&(env.inp));
-		if (env.bestGroup && env.bestGroup->head && env.antsnb)
+		if (env.best_group && env.best_group->head && env.antsnb)
 		{
 			main_c2(&env);
 		}

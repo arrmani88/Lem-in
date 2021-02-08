@@ -12,7 +12,7 @@ LFLAG =
 
 LIBFT = $(LIBFT_DIR)/$(LIBFT_FILE)
 
-HEADERS = $(INC_DIR)lem-in.h
+HEADERS = $(INC_DIR)lem_in.h
 LIBFT_HEADERS = $(LIBFT_INC)libft.h $(LIBFT_INC)get_next_line.h
 
 EXECUTION_FILES = ants.c ants2.c bfs.c main.c pathgen.c pathgen2.c pathgen3.c set_dept_layers.c

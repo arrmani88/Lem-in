@@ -37,12 +37,12 @@ void	initialize_var(t_env *env)
 	env->totallen = 0;
 	env->start = NULL;
 	env->end = NULL;
-	env->startEndLinked = 0;
-	env->pathGroup = (t_pathGroup *)ft_memalloc(sizeof(t_pathGroup));
-	env->pathGroup->groupNumber = 1;
-	env->pthGrp = NULL;
-	env->groupNb = 1;
-	env->bestScore = __INT_MAX__;
+	env->start_end_linked = 0;
+	env->path_group = (t_path_group *)ft_memalloc(sizeof(t_path_group));
+	env->path_group->group_number = 1;
+	env->pth_grp = NULL;
+	env->group_nb = 1;
+	env->best_score = __INT_MAX__;
 }
 
 int		ft_str_is_num(char *str)

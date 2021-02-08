@@ -29,7 +29,7 @@ void	fill_room_c1(t_env *env, char *str, int msg, int i)
 	env->ptr->parent = NULL;
 	env->ptr->set_last = 0;
 	env->ptr->dept_layer = -1;
-	env->ptr->correctionRoom = 0;
+	env->ptr->correction_room = 0;
 }
 
 void	fill_room(t_env *env, char *str, int msg)
@@ -82,7 +82,7 @@ void	link_two_rooms(t_env *env, char *rm1, char *rm2)
 	env->lnk->room = get_room(env, rm2);
 	if ((room1 == env->start && env->lnk->room == env->end) ||
 		(room1 == env->end && env->lnk->room == env->start))
-		env->startEndLinked = 1;
+		env->start_end_linked = 1;
 	env->lnk->next = NULL;
 	env->lnk->flow = 0;
 }

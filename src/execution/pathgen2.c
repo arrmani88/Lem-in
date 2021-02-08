@@ -25,16 +25,16 @@ t_ptheads *head, t_norm_sfcg *sfcg)
 	if (head == NULL && ++sfcg->is_any_path_saved)
 	{
 		sfcg->current_score = get_group_score(env->antsnb,
-sfcg->grp->total_roomsInGroup + total_rooms_in_path, sfcg->grp->totalHeads + 1);
+sfcg->grp->total_rooms_in_group + total_rooms_in_path, sfcg->grp->total_heads + 1);
 		if (sfcg->current_score < sfcg->grp->score || sfcg->grp->score == 0)
 		{
 			save_head_in_this_group(env, sfcg->prev,
 			&sfcg->grp, total_rooms_in_path);
 			sfcg->grp->score = sfcg->current_score;
-			if (sfcg->current_score < env->bestScore)
+			if (sfcg->current_score < env->best_score)
 			{
-				env->bestScore = sfcg->current_score;
-				env->bestGroup = sfcg->grp;
+				env->best_score = sfcg->current_score;
+				env->best_group = sfcg->grp;
 			}
 		}
 	}
@@ -44,7 +44,7 @@ void	search_for_convenient_group(t_env *env, int total_rooms_in_path)
 {
 	t_norm_sfcg sfcg;
 
-	sfcg.grp = env->pathGroup;
+	sfcg.grp = env->path_group;
 	sfcg.prev = NULL;
 	sfcg.current_score = 0;
 	sfcg.is_any_path_saved = 0;

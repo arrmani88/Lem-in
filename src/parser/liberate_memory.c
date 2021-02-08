@@ -34,27 +34,27 @@ void	free_rooms(t_env *env)
 
 void	liberate_memory(t_env *env)
 {
-	t_pathGroup	*group_tmp;
+	t_path_group	*group_tmp;
 	t_ptheads	*head_tmp;
 	t_path		*path_tmp;
 
-	while (env->pathGroup)
+	while (env->path_group)
 	{
-		group_tmp = env->pathGroup->next;
-		while (env->pathGroup->head)
+		group_tmp = env->path_group->next;
+		while (env->path_group->head)
 		{
-			head_tmp = env->pathGroup->head->next;
-			while (env->pathGroup->head->path)
+			head_tmp = env->path_group->head->next;
+			while (env->path_group->head->path)
 			{
-				path_tmp = env->pathGroup->head->path->next;
-				free(env->pathGroup->head->path);
-				env->pathGroup->head->path = path_tmp;
+				path_tmp = env->path_group->head->path->next;
+				free(env->path_group->head->path);
+				env->path_group->head->path = path_tmp;
 			}
-			free(env->pathGroup->head);
-			env->pathGroup->head = head_tmp;
+			free(env->path_group->head);
+			env->path_group->head = head_tmp;
 		}
-		free(env->pathGroup);
-		env->pathGroup = group_tmp;
+		free(env->path_group);
+		env->path_group = group_tmp;
 	}
 	free_rooms(env);
 }

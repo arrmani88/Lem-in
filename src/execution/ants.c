@@ -22,7 +22,7 @@ void	ft_calc_ants(t_env *env)
 
 	meanlen = (env->antsnb + env->totallen) / env->nbrpaths;
 	mod = (env->antsnb + env->totallen) % env->nbrpaths;
-	tmp = env->bestGroup->head;
+	tmp = env->best_group->head;
 	prev = tmp;
 	i = -1;
 	while (++i < env->nbrpaths && tmp)

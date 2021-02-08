@@ -44,23 +44,23 @@ int		check_if_room_duplicated_in_both(t_path *p1, t_path *p2)
 
 void	save_head_in_new_grp(t_env *env, int total_rooms_in_path)
 {
-	t_pathGroup *grp;
+	t_path_group *grp;
 
-	grp = env->pathGroup;
+	grp = env->path_group;
 	while (grp->next)
 		grp = grp->next;
-	grp->next = (t_pathGroup *)ft_memalloc(sizeof(t_pathGroup));
+	grp->next = (t_path_group *)ft_memalloc(sizeof(t_path_group));
 	grp = grp->next;
 	grp->head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
 	grp->head->path = env->path;
-	grp->groupNumber = ++(env->groupNb);
-	++(grp->totalHeads);
-	grp->total_roomsInGroup = total_rooms_in_path;
+	grp->group_number = ++(env->group_nb);
+	++(grp->total_heads);
+	grp->total_rooms_in_group = total_rooms_in_path;
 	grp->score = total_rooms_in_path + 1;
 }
 
 void	save_head_in_this_group(t_env *env, t_ptheads *prev,
-t_pathGroup **grp, int total_rooms_in_path)
+t_path_group **grp, int total_rooms_in_path)
 {
 	t_ptheads *head;
 
@@ -76,8 +76,8 @@ t_pathGroup **grp, int total_rooms_in_path)
 	}
 	head->total_rooms = total_rooms_in_path;
 	head->path = env->path;
-	++((*grp)->totalHeads);
-	(*grp)->total_roomsInGroup += total_rooms_in_path;
+	++((*grp)->total_heads);
+	(*grp)->total_rooms_in_group += total_rooms_in_path;
 }
 
 int		get_group_score(int ants, int rooms_in_grp, int heads)
