@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 void	free_rooms(t_env *env)
 {
@@ -20,14 +20,17 @@ void	free_rooms(t_env *env)
 	i = -1;
 	while (++i < env->nbrooms)
 	{
-		while (env->room[i]->link)
+		while (env->room[i] && env->room[i]->link)
 		{
 			link = env->room[i]->link->next;
 			free(env->room[i]->link);
 			env->room[i]->link = link;
 		}
-		free(env->room[i]->name);
-		free(env->room[i]);
+		if (env->room[i])
+		{
+			free(env->room[i]->name);
+			free(env->room[i]);
+		}
 	}
 	free(env->room);
 }

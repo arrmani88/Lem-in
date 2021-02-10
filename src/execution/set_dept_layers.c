@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 void	set_dept_layers_c2(t_env *env, t_norm_sdl *sdl)
 {

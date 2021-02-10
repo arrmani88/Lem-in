@@ -10,23 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
-
-int		detect_room_link(char *str)
-{
-	int i;
-
-	i = -1;
-	while (str[++i] && ft_isalnum(str[i]))
-		;
-	if (str[i] == ' ')
-		return (ROOM);
-	if (str[i] == '-')
-		return (LINK);
-	if (!str[i])
-		return (-1);
-	return (-1);
-}
+#include "../includes/lem_in.h"
 
 int		ft_check_link(char *line, char **out)
 {

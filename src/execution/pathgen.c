@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 t_link	*get_link_from(t_room *room1, t_room *room2)
 {
@@ -36,22 +36,6 @@ void	verify_reverse_link(t_env *env, t_link *lnk, t_room *rm)
 			env->retry = 1;
 		}
 	}
-}
-
-t_path	*select_next_path(t_env *env)
-{
-	if (!env->pthds && env->ptheads)
-		env->pthds = env->ptheads;
-	else if (env->pthds)
-	{
-		if (env->pthds->next == NULL)
-		{
-			env->pthds->next = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-			env->pthds->next->path = (t_path *)ft_memalloc(sizeof(t_path));
-		}
-		env->pthds = env->pthds->next;
-	}
-	return (env->pthds->path);
 }
 
 t_path	*allocate_pheads(t_env *env)

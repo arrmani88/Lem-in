@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 void	search_for_convenient_group_c1(t_env *env, int total_rooms_in_path,
 t_ptheads *head, t_norm_sfcg *sfcg)

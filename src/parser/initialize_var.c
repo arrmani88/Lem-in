@@ -10,19 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
-
-void	set_first_ch(t_env *env)
-{
-	t_link	*lnk;
-
-	lnk = env->start->link;
-	while (lnk)
-	{
-		lnk->room->childnb = FIRST_CH;
-		lnk = lnk->next;
-	}
-}
+#include "../includes/lem_in.h"
 
 void	initialize_var(t_env *env)
 {

@@ -26,7 +26,7 @@ OBJ_EXECUTION = $(addprefix $(OBJ_DIR)/, $(EXECUTION_FILES:%.c=%.o))
 OBJ_PARSER = $(addprefix $(OBJ_DIR)/, $(PARSER_FILES:%.c=%.o))
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -g -Wall -Werror -Wextra 
 INC = -I $(INC_DIR) -I $(LIBFT_INC)
 
 C_RED = \033[31m
@@ -52,9 +52,7 @@ $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 	@printf "Lem-in:  %-25s$(C_GREEN)[done]$(C_NONE)\n" $@
 
-$(NAME): $(OBJ_DIR) $(OBJ_PARSER) $(OBJ_EXECUTION)
-	@make -C $(LIBFT_DIR)
-	@printf "Lem-in:  %-25s$(C_GREEN)[done]$(C_NONE)\n" "libft.a"
+$(NAME): $(LIBFT_FILE) $(OBJ_DIR) $(OBJ_PARSER) $(OBJ_EXECUTION)
 	@$(CC) $(OBJ_PARSER) $(OBJ_EXECUTION) $(LIBFT) $(LFLAG) -o $(NAME)
 	@printf "Lem-in:  %-25s$(C_GREEN)[done]$(C_NONE)\n" $@
 

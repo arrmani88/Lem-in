@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
-int		rooms_count(char *str)
+int		is_room(char *str)
 {
 	int i;
 	int wrd;
@@ -51,13 +51,13 @@ void	input_to_list(t_env *env)
 	env->inp->next = NULL;
 	ptr = env->inp;
 	ptr->line = line;
-	env->nbrooms = rooms_count(line);
+	env->nbrooms = is_room(line);
 	while (get_next_line(0, &line))
 	{
 		ptr->next = (t_inp *)malloc(sizeof(t_inp));
 		ptr = ptr->next;
 		ptr->line = line;
 		ptr->next = NULL;
-		env->nbrooms += rooms_count(line);
+		env->nbrooms += is_room(line);
 	}
 }

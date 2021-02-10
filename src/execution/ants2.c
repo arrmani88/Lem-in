@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem-in.h"
+#include "../includes/lem_in.h"
 
 void	ft_move_ants_lip(t_ptheads *path, t_ant_opt *opt)
 {
@@ -59,20 +59,6 @@ int		ft_select_path(t_env *env, int next_len, int avg_len)
 		sp.tmp = sp.tmp->next;
 	}
 	return (sp.ret > 0);
-}
-
-int		ft_links_lenght(t_path *path)
-{
-	int i;
-
-	i = 0;
-	while (path)
-	{
-		i++;
-		path->ant_id = 0;
-		path = path->next;
-	}
-	return (i);
 }
 
 void	ft_select_paths(t_env *env, t_ptheads *current, int avg_len)
