@@ -41,13 +41,14 @@ int		is_room(char *str)
 	return ((wrd == 3 && spc == 2) ? 1 : 0);
 }
 
-void	input_to_list(t_env *env)
+int		input_to_list(t_env *env)
 {
 	t_inp	*ptr;
 	char	*line;
 
-	get_next_line(0, &line, 0);
-	env->inp = (t_inp *)malloc(sizeof(t_inp));
+	if (get_next_line(0, &line, 0) <= 0 ||
+	!(env->inp = (t_inp *)malloc(sizeof(t_inp))))
+		return (0);
 	env->inp->next = NULL;
 	ptr = env->inp;
 	ptr->line = line;
@@ -61,4 +62,5 @@ void	input_to_list(t_env *env)
 		env->nbrooms += is_room(line);
 	}
 	ft_strdel(&line);
+	return (1);
 }

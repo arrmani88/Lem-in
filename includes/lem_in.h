@@ -179,7 +179,7 @@ typedef struct		s_env
 
 void				liberate_memory(t_env *env);
 int					check_error(t_inp **inp, char **line, int *section);
-void				input_to_list(t_env *env);
+int					input_to_list(t_env *env);
 int					save_input(t_env *env);
 int					get_index(int max, char *str);
 int					bfs(t_env *env, int follow, t_room *start);

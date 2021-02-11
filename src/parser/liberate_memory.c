@@ -63,6 +63,18 @@ void	liberate_memory(t_env *env)
 		env->path_group = group_tmp;
 	}
 	free_rooms(env);
+	while (env->pthds)
+	{
+		head_tmp = env->pthds->next;
+		while (env->pthds->path)
+		{
+			path_tmp = env->pthds->path->next;
+			free(env->pthds->path);
+			env->pthds->path = path_tmp;
+		}
+		free(env->pthds);
+		env->pthds = head_tmp;
+	}
 }
 
 void	delete_heads_rest(t_ptheads *pthds)
