@@ -20,7 +20,7 @@ void	search4paths(t_env *env, int follow)
 	{
 		env->second_call = 1;
 		search4paths(env, 1);
-		delete_heads_rest((env->pthds));
+		// delete_heads_rest((env->pthds));
 		return ;
 	}
 }
@@ -61,9 +61,9 @@ int		main(void)
 	t_env		env;
 
 	int fd = open("flow", O_RDONLY);
-	int fd2 = open("out", O_WRONLY);
+	// int fd2 = open("out", O_WRONLY);
 	dup2(fd, 0);
-	dup2(fd2, 1);
+	// dup2(fd2, 1);
 
 	initialize_var(&env);
 	if (!input_to_list(&env) || !save_input(&env))
@@ -75,13 +75,13 @@ int		main(void)
 			set_dept_layers(&env);
 			search4paths(&env, 0);
 		}
-		else if (env.start_end_linked)
-			set_one_path(&env);
-		print_input(&(env.inp));
-		if (env.best_group && env.best_group->head && env.antsnb)
-		{
-			main_c2(&env);
-		}
+		// else if (env.start_end_linked)
+		// 	set_one_path(&env);
+		// print_input(&(env.inp));
+		// if (env.best_group && env.best_group->head && env.antsnb)
+		// {
+		// 	main_c2(&env);
+		// }
 	}
 	liberate_memory(&env);
 	return (0);

@@ -16,21 +16,27 @@ void	free_rooms(t_env *env)
 {
 	int		i;
 	t_link	*link;
+	t_room	*room;
 	char *tmp;
 
 	i = -1;
 	while (++i < env->nbrooms)
 	{
-		while (env->room && env->room[i] && env->room[i]->link)
+		while(env->room[i])
 		{
-			link = env->room[i]->link->next;
-			free(env->room[i]->link);
-			env->room[i]->link = link;
-		}
-		if (env->room[i])
-		{
-			free(env->room[i]->name);
-			free(env->room[i]);
+			room = env->room[i]->next;
+			while (env->room && env->room[i] && env->room[i]->link)
+			{
+				link = env->room[i]->link->next;
+				free(env->room[i]->link);
+				env->room[i]->link = link;
+			}
+			if (env->room[i])
+			{
+				free(env->room[i]->name);
+				free(env->room[i]);
+			}
+			env->room[i] = room;
 		}
 	}
 	if (env->room)
@@ -50,6 +56,7 @@ void	liberate_memory(t_env *env)
 		while (env->path_group->head)
 		{
 			head_tmp = env->path_group->head->next;
+			printf("<freed=%p>\n", env->path_group->head);
 			while (env->path_group->head->path)
 			{
 				path_tmp = env->path_group->head->path->next;
@@ -63,18 +70,6 @@ void	liberate_memory(t_env *env)
 		env->path_group = group_tmp;
 	}
 	free_rooms(env);
-	while (env->pthds)
-	{
-		head_tmp = env->pthds->next;
-		while (env->pthds->path)
-		{
-			path_tmp = env->pthds->path->next;
-			free(env->pthds->path);
-			env->pthds->path = path_tmp;
-		}
-		free(env->pthds);
-		env->pthds = head_tmp;
-	}
 }
 
 void	delete_heads_rest(t_ptheads *pthds)
