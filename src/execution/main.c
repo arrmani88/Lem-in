@@ -61,9 +61,9 @@ int		main(void)
 	t_env		env;
 
 	int fd = open("flow", O_RDONLY);
-	int fd2 = open("out", O_WRONLY);
+	// int fd2 = open("out", O_WRONLY);
 	dup2(fd, 0);
-	dup2(fd2, 1);
+	// dup2(fd2, 1);
 
 	initialize_var(&env);
 	input_to_list(&env);

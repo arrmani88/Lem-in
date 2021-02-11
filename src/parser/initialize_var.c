@@ -14,6 +14,7 @@
 
 void	initialize_var(t_env *env)
 {
+	env->nbrooms = 0;
 	env->antsnb = 0;
 	env->pthds = NULL;
 	env->ptheads = NULL;
@@ -31,6 +32,7 @@ void	initialize_var(t_env *env)
 	env->pth_grp = NULL;
 	env->group_nb = 1;
 	env->best_score = __INT_MAX__;
+	env->room = NULL;
 }
 
 int		ft_str_is_num(char *str)

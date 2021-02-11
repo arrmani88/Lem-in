@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 20:25:43 by anel-bou          #+#    #+#             */
-/*   Updated: 2020/03/14 18:56:23 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/04/01 00:31:36 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/04/29 13:11:02 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <string.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include "libft.h"
-
 # define BUFF_SIZE 32
-# define CC cache->content
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include "libft.h"
+# include <stdlib.h>
+# include <stdio.h>
 
-int		get_next_line(const int fd, char **line);
+int		get_next_line(const int fd, char **line, int flag);
 
 #endif

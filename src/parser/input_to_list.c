@@ -28,13 +28,13 @@ int		is_room(char *str)
 			;
 	if (str[i] == '-')
 		return (0);
-	if (str[i] == ' ' && ++spc)
-		;
+	if (str[i] == ' ')
+		++spc;
 	if (str[i] && str[++i] && ft_isdigit(str[i]) && ++wrd)
 		while (ft_isdigit(str[++i]))
 			;
-	if (str[i] == ' ' && ++spc)
-		;
+	if (str[i] == ' ')
+		++spc;
 	if (str[i] && str[++i] && ft_isdigit(str[i]) && ++wrd)
 		while (str[++i] && ft_isdigit(str[i]))
 			;
@@ -46,13 +46,13 @@ void	input_to_list(t_env *env)
 	t_inp	*ptr;
 	char	*line;
 
-	get_next_line(0, &line);
+	get_next_line(0, &line, 0);
 	env->inp = (t_inp *)malloc(sizeof(t_inp));
 	env->inp->next = NULL;
 	ptr = env->inp;
 	ptr->line = line;
 	env->nbrooms = is_room(line);
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &line, 0) > 0)
 	{
 		ptr->next = (t_inp *)malloc(sizeof(t_inp));
 		ptr = ptr->next;
@@ -60,4 +60,5 @@ void	input_to_list(t_env *env)
 		ptr->next = NULL;
 		env->nbrooms += is_room(line);
 	}
+	ft_strdel(&line);
 }

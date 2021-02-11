@@ -16,11 +16,12 @@ void	free_rooms(t_env *env)
 {
 	int		i;
 	t_link	*link;
+	char *tmp;
 
 	i = -1;
 	while (++i < env->nbrooms)
 	{
-		while (env->room[i] && env->room[i]->link)
+		while (env->room && env->room[i] && env->room[i]->link)
 		{
 			link = env->room[i]->link->next;
 			free(env->room[i]->link);
@@ -32,7 +33,9 @@ void	free_rooms(t_env *env)
 			free(env->room[i]);
 		}
 	}
-	free(env->room);
+	if (env->room)
+		free(env->room);
+	get_next_line(0, &tmp, 1);
 }
 
 void	liberate_memory(t_env *env)

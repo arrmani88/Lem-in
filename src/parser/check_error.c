@@ -35,7 +35,7 @@ int		ft_check_room(char *line, char **out, int *section)
 
 	ret = 0;
 	table = ft_strsplit(line, ' ');
-	if (table[0] && table[1] && table[2] && !(table[3]) &&
+	if (table && table[0] && table[1] && table[2] && !(table[3]) &&
 			ft_str_is_name(table[0]) &&
 			ft_str_is_num(table[1]) && ft_str_is_num(table[2]) &&
 			(ft_atoi(table[1]) >= 0) && (ft_atoi(table[2]) >= 0))
