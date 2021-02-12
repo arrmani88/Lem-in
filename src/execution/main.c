@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:07:13 by youarzaz          #+#    #+#             */
-/*   Updated: 2021/01/09 17:07:18 by youarzaz         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:32:43 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	main_c2(t_env *env)
 	opt.antsnb = env->antsnb;
 	opt.antsnb_org = env->antsnb;
 	opt.nbrpaths = env->nbrpaths;
-	ft_move_ants_trip(env->best_group->head, env->best_group->head, opt);
+	// ft_move_ants_trip(env->best_group->head, env->best_group->head, opt);
 }
 
 int		main(void)
@@ -83,7 +83,7 @@ int		main(void)
 		}
 		else if (env.start_end_linked)
 			set_one_path(&env);
-		print_input(&(env.inp));
+		// print_input(&(env.inp));
 		if (env.best_group && env.best_group->head && env.antsnb)
 		{
 			main_c2(&env);

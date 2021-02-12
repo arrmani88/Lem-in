@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   liberate_memory.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 16:48:58 by youarzaz          #+#    #+#             */
-/*   Updated: 2021/01/09 16:49:05 by youarzaz         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:52:57 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ void	liberate_memory(t_env *env)
 		while (env->path_group->head)
 		{
 			head_tmp = env->path_group->head->next;
+			// printf("\npath >> ");
 			while (env->path_group->head->path)
 			{
 				path_tmp = env->path_group->head->path->next;
+				// printf("%s->", env->path_group->head->path->room->name);
 				free(env->path_group->head->path);
 				env->path_group->head->path = path_tmp;
 			}

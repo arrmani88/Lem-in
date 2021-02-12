@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathgen2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:31:20 by youarzaz          #+#    #+#             */
-/*   Updated: 2021/01/09 17:31:21 by youarzaz         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:53:28 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ t_ptheads *head, t_norm_sfcg *sfcg)
 		sfcg->prev = head;
 		head = head->next;
 	}
-	if (head == NULL && ++sfcg->is_any_path_saved)
+	if (head == NULL)
 	{
 		sfcg->current_score = get_group_score(env->antsnb,
 sfcg->grp->total_rooms_in_group + total_rooms_in_path, sfcg->grp->total_heads + 1);
 		if (sfcg->current_score < sfcg->grp->score || sfcg->grp->score == 0)
 		{
+			++sfcg->is_any_path_saved;
 			save_head_in_this_group(env, sfcg->prev,
 			&sfcg->grp, total_rooms_in_path);
 			sfcg->grp->score = sfcg->current_score;
@@ -82,6 +83,18 @@ void	path_generator_c2(t_env *env, t_norm_pg *pg)
 	}
 }
 
+/*-------------------------SUPPRIMER-------------------------*/
+void print_path(t_path *path)
+{
+	while (path)
+	{
+		printf("%s->", path->room->name);
+		path = path->next;
+	}
+	printf("\n");
+}
+/*-------------------------SUPPRIMER-------------------------*/
+
 int		path_generator(t_env *env, t_room *start)
 {
 	t_norm_pg	pg;
@@ -105,6 +118,8 @@ int		path_generator(t_env *env, t_room *start)
 		pg.rm = pg.lnk->room;
 	}
 	search_for_convenient_group(env, pg.total_rooms);
+	// printf("FOUND PATH>>>> ");
+	// print_path(env->path);
 	return (1);
 }
 
