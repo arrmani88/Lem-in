@@ -159,7 +159,6 @@ typedef struct		s_env
 	t_ptheads		*ptheads;
 	t_path			*path;
 	t_path			*pth;
-	t_path			*pth_head;
 	t_inp			*inp;
 	char			*tmp;
 	int				antsnb;

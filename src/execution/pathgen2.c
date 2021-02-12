@@ -75,7 +75,6 @@ void	path_generator_c2(t_env *env, t_norm_pg *pg)
 		}
 		if (!env->pth->next)
 			env->pth->next = (t_path *)ft_memalloc(sizeof(t_path));
-		// free(env->pth);
 		env->pth = env->pth->next;
 		env->pth->room = pg->lnk->room;
 		++pg->total_rooms;

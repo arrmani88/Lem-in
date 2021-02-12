@@ -16,13 +16,13 @@ void	search4paths(t_env *env, int follow)
 {
 	while (bfs(env, follow, env->start))
 		;
-	// t_path *path_tmp;
-	// while(env->path)
-	// {
-	// 	path_tmp = env->path->next;
-	// 	free(env->path);
-	// 	env->path = path_tmp;
-	// }
+	t_path *path_tmp;
+	while(env->path)
+	{
+		path_tmp = env->path->next;
+		free(env->path);
+		env->path = path_tmp;
+	}
 	if (env->retry && !follow)
 	{
 		env->second_call = 1;
