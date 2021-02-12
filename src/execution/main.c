@@ -20,7 +20,6 @@ void	search4paths(t_env *env, int follow)
 	{
 		env->second_call = 1;
 		search4paths(env, 1);
-		// delete_heads_rest((env->pthds));
 		return ;
 	}
 }
@@ -75,13 +74,13 @@ int		main(void)
 			set_dept_layers(&env);
 			search4paths(&env, 0);
 		}
-		// else if (env.start_end_linked)
-		// 	set_one_path(&env);
-		// print_input(&(env.inp));
-		// if (env.best_group && env.best_group->head && env.antsnb)
-		// {
-		// 	main_c2(&env);
-		// }
+		else if (env.start_end_linked)
+			set_one_path(&env);
+		print_input(&(env.inp));
+		if (env.best_group && env.best_group->head && env.antsnb)
+		{
+			main_c2(&env);
+		}
 	}
 	liberate_memory(&env);
 	return (0);
