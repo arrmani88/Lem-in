@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_islpha.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 11:32:14 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/04/04 23:19:58 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/26 13:47:50 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/03/26 14:19:22 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int b)
+int		ft_isalpha(int c)
 {
-	return (ft_isupper(b) || ft_islower(b));
+	return (ft_islower(c) || ft_isupper(c));
 }

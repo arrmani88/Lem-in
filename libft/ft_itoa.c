@@ -3,37 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/31 17:13:28 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/06/30 22:29:19 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/26 19:40:28 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/04/07 19:15:16 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+static size_t	ft_itoa_alloc(int n)
 {
-	char			*new;
-	int				len;
-	int				sign;
-	unsigned int	nn;
+	size_t size;
 
-	len = ft_decilen(n);
-	if (!(new = (char *)malloc(sizeof(*new) * (len + 1))))
-		return (NULL);
-	sign = (n < 0 ? -1 : 1);
-	if (n == 0)
-		new[0] = '0';
-	nn = (n < 0 ? -n : n);
-	new[len--] = '\0';
-	while (nn > 0)
+	size = 1;
+	if (n < 0)
 	{
-		new[len] = nn % 10 + '0';
-		nn /= 10;
-		len--;
+		n = -n;
+		size++;
 	}
-	if (sign == -1)
-		new[0] = '-';
-	return (new);
+	while (n)
+	{
+		n /= 10;
+		size++;
+	}
+	return (size);
+}
+
+char			*ft_itoa(int n)
+{
+	char			*str;
+	size_t			size;
+	unsigned int	nbr;
+
+	if (n == 0)
+		return (ft_strdup("0"));
+	else if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	size = ft_itoa_alloc(n);
+	str = ft_strnew(size - 1);
+	if (!str)
+		return (NULL);
+	if (n < 0)
+		str[0] = '-';
+	nbr = (n < 0) ? -n : n;
+	str[--size] = '\0';
+	while (size-- && nbr)
+	{
+		str[size] = (nbr % 10) + '0';
+		nbr /= 10;
+	}
+	return (str);
 }

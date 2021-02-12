@@ -17,7 +17,7 @@ t_ptheads *head, t_norm_sfcg *sfcg)
 {
 	while (head)
 	{
-		if (check_if_room_duplicated_in_both(head->path, env->pthds->path))
+		if (check_if_room_duplicated_in_both(head->path, env->path))
 			break ;
 		sfcg->prev = head;
 		head = head->next;
@@ -75,6 +75,7 @@ void	path_generator_c2(t_env *env, t_norm_pg *pg)
 		}
 		if (!env->pth->next)
 			env->pth->next = (t_path *)ft_memalloc(sizeof(t_path));
+		// free(env->pth);
 		env->pth = env->pth->next;
 		env->pth->room = pg->lnk->room;
 		++pg->total_rooms;
@@ -93,7 +94,6 @@ int		path_generator(t_env *env, t_room *start)
 	pg.rm = enumerate_from_end_to_start(env, start);
 	pg.rm->iterated = ++env->iteration_nb;
 	allocate_path_head(env);
-	pg.papr = env->pth;
 	env->path = env->pth;
 	env->pth->room = pg.rm;
 	while (pg.rm != env->end && ++i)

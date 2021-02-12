@@ -3,38 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/31 11:46:37 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/04/04 20:44:01 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/26 20:08:58 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/03/31 21:34:57 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_strsplit(char const *s, char c)
+static int	ft_strsplit_tab_alloc(const char *str, char c)
 {
-	int		i;
-	int		index;
-	char	**new;
+	int i;
+	int j;
 
-	if (!s ||
-	!(new = (char **)malloc(sizeof(char*) * (ft_cwordcount(s, c) + 1))))
-		return (NULL);
 	i = 0;
-	index = 0;
+	j = 0;
+	while (str[j] && str[j] == c)
+		j++;
+	while (str[j])
+	{
+		if (str[j] && str[j] == c)
+		{
+			while (str[j])
+				if (str[j] == c)
+					j++;
+				else
+				{
+					break ;
+				}
+			if (str[j])
+				i++;
+		}
+		j++;
+	}
+	return (i);
+}
+
+static char	*ft_strsplit_word_alloc(const char *str, int *start, int end)
+{
+	char	*tab;
+	int		i;
+
+	i = 0;
+	tab = (char *)malloc(sizeof(char) * ((end - *start) + 1));
+	while (*start < end)
+	{
+		tab[i] = str[*start];
+		i++;
+		(*start)++;
+	}
+	tab[i] = '\0';
+	return (tab);
+}
+
+char		**ft_strsplit(char const *s, char c)
+{
+	char	**tab;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	k = 0;
+	if (!s)
+		return (NULL);
+	tab = (char**)malloc(sizeof(char *) * (ft_strsplit_tab_alloc(s, c) + 2));
+	if (!tab)
+		return (NULL);
 	while (s[i])
 	{
-		if ((s[i] != c && s[i - 1] == c) || (i == 0 && s[i] != c))
-		{
-			new[index] = (char *)malloc(sizeof(*s) *
-					(ft_clettercount(&s[i], c) + 1));
-			ft_strncpy(new[index], &s[i], ft_clettercount(&s[i], c));
-			new[index][ft_clettercount(&s[i], c)] = '\0';
-			index++;
-		}
-		i++;
+		j = i;
+		while (s[j] && s[j] != c)
+			j++;
+		if (j > i)
+			tab[k++] = ft_strsplit_word_alloc(s, &i, j);
+		else
+			i++;
 	}
-	new[index] = 0;
-	return (new);
+	tab[k] = 0;
+	return (tab);
 }

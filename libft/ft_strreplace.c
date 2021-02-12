@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strreplace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/21 21:11:20 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/09/19 13:48:48 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/29 21:50:13 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/03/30 00:31:59 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnstr(char *str, int n)
+char	*ft_strreplace(char *str, char c, int index)
 {
-	while (*str && n--)
-		ft_putchar(*str++);
+	str[index] = c;
+	return (str);
 }

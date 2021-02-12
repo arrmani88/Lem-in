@@ -135,7 +135,6 @@ typedef struct		s_norm_pg
 	t_room	*rm;
 	t_link	*lnk;
 	int		total_rooms;
-	t_path	*papr;
 }					t_norm_pg;
 
 typedef struct		s_norm_sdl
@@ -158,9 +157,9 @@ typedef struct		s_env
 	t_path_group	*pth_grp;
 	t_path_group	*best_group;
 	t_ptheads		*ptheads;
-	t_ptheads		*pthds;
 	t_path			*path;
 	t_path			*pth;
+	t_path			*pth_head;
 	t_inp			*inp;
 	char			*tmp;
 	int				antsnb;
@@ -186,7 +185,6 @@ int					bfs(t_env *env, int follow, t_room *start);
 t_room				*get_room(t_env *env, char *room);
 void				initialize_var(t_env *env);
 int					path_generator(t_env *env, t_room *start);
-void				delete_heads_rest(t_ptheads *pthds);
 void				delete_path_rest(t_path *ptr);
 void				set_antsnb(t_inp **inp, t_env *env);
 void				ft_calc_ants(t_env *env);

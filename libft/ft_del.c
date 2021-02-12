@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr2.c                                     :+:      :+:    :+:   */
+/*   ft_del.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/31 13:17:24 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/05/14 12:22:59 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/04/21 16:02:31 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/04/21 16:04:49 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_printstr2(char **s)
+void	ft_del(void *content, size_t size)
 {
-	while (*s)
-		ft_putendl(*s++);
+	ft_bzero(content, size);
+	ft_memdel(&content);
 }

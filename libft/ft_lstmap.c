@@ -3,29 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/08 21:22:57 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/04/09 16:19:32 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/27 01:22:05 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/03/29 23:32:03 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*tmp;
-	t_list	*new;
+	t_list *tmp;
+	t_list *head;
 
-	if (!lst || !f)
+	if (!lst)
 		return (NULL);
-	new = f(lst);
-	tmp = new;
+	tmp = f(lst);
+	if (!tmp)
+		return (NULL);
+	head = tmp;
 	while (lst->next)
 	{
-		tmp->next = f(lst->next);
-		lst = lst->next;
+		if (!(tmp->next = f(lst->next)))
+		{
+			ft_lstdel(&head, &ft_del);
+			return (NULL);
+		}
 		tmp = tmp->next;
+		lst = lst->next;
 	}
-	return (new);
+	tmp->next = NULL;
+	return (head);
 }

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_end.c                                    :+:      :+:    :+:   */
+/*   ft_memindex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/12 12:44:06 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/04/12 14:38:17 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/04/01 14:35:41 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/04/04 01:45:01 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_end(t_list **alst, t_list *new)
+size_t		ft_memindex(void *str, int c, size_t n)
 {
-	t_list *frst;
+	size_t i;
 
-	if (!alst || !new)
-		return ;
-	frst = *alst;
-	while (frst->next)
-		frst = frst->next;
-	frst->next = new;
+	i = 0;
+	if (!c)
+		return (-1);
+	while (i < n)
+		if (((unsigned char *)str)[i] == c)
+			return (i);
+	return (-1);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 11:41:10 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/03/30 11:41:46 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/26 14:18:04 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/03/26 14:18:55 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isupper(int c)
+int		ft_isupper(int c)
 {
 	return (c >= 'A' && c <= 'Z');
 }

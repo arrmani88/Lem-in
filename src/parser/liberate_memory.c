@@ -56,7 +56,6 @@ void	liberate_memory(t_env *env)
 		while (env->path_group->head)
 		{
 			head_tmp = env->path_group->head->next;
-			printf("<freed=%p>\n", env->path_group->head);
 			while (env->path_group->head->path)
 			{
 				path_tmp = env->path_group->head->path->next;
@@ -70,30 +69,6 @@ void	liberate_memory(t_env *env)
 		env->path_group = group_tmp;
 	}
 	free_rooms(env);
-}
-
-void	delete_heads_rest(t_ptheads *pthds)
-{
-	t_ptheads	*ptr;
-	t_ptheads	*tmp;
-	t_path		*path;
-	t_path		*tmp2;
-
-	ptr = (pthds)->next;
-	(pthds)->next = NULL;
-	while (ptr)
-	{
-		path = (ptr)->path;
-		while (path)
-		{
-			tmp2 = path->next;
-			free(path);
-			path = tmp2;
-		}
-		tmp = (ptr)->next;
-		free(ptr);
-		ptr = tmp;
-	}
 }
 
 void	delete_path_rest(t_path *ptr)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 12:28:47 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/04/01 07:05:10 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/26 14:24:53 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/03/30 13:35:34 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+int		ft_isprint(int c)
 {
-	return (c >= '\040' && c <= '\176');
+	return (c >= 32 && c < 127);
 }

@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/27 10:44:40 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/04/10 13:13:24 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/26 11:28:48 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/03/31 22:44:29 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char *cp;
+	size_t	i;
+	char	*srccopy;
 
-	if (!(cp = (char *)malloc(sizeof(*cp) * (len + 1))))
-		return (NULL);
-	ft_memcpy(cp, src, len);
-	ft_memcpy(dst, cp, len);
-	free(cp);
-	return (dst);
+	srccopy = (char *)src;
+	i = -1;
+	if (src < dest)
+	{
+		while ((int)--n >= 0)
+			*((char *)dest + n) = *(srccopy + n);
+	}
+	else
+	{
+		while ((int)++i < (int)n)
+			*((char *)dest + i) = *(srccopy + i);
+	}
+	return (dest);
 }

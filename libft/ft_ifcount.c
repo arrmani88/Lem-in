@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_ifcount.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/12 14:37:07 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/04/12 14:41:57 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/04/13 22:11:39 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/04/13 22:11:51 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *alst)
+int		ft_ifcount(char *s, int (*f)(int))
 {
-	t_list	*tmp;
-	int		i;
+	int i;
+	int j;
 
-	if (!alst)
-		return (0);
-	tmp = alst;
+	if (!s)
+		return (-1);
 	i = 0;
-	while (tmp)
+	j = 0;
+	while (s[i])
 	{
-		tmp = tmp->next;
+		if (f(s[i]))
+			j++;
 		i++;
 	}
-	return (i);
+	return (j);
 }

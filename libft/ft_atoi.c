@@ -3,36 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anel-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: youarzaz <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/29 21:38:33 by anel-bou          #+#    #+#             */
-/*   Updated: 2019/10/19 15:47:00 by anel-bou         ###   ########.fr       */
+/*   Created: 2019/03/26 13:41:29 by youarzaz          #+#    #+#             */
+/*   Updated: 2019/04/13 23:52:04 by youarzaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *s)
+int		ft_atoi(const char *str)
 {
-	int	i;
-	int	neg;
-	int	result;
+	int			s;
+	long long	res;
 
-	i = 0;
-	neg = 1;
-	result = 0;
-	while ((s[i] >= 9 && s[i] <= 13) || s[i] == 32)
-		i++;
-	if (s[i] == '-' || s[i] == '+')
+	s = 1;
+	res = 0;
+	while (*str == '\v' || *str == '\r' || *str == '\f'
+			|| *str == ' ' || *str == '\n' || *str == '\t')
+		str++;
+	if (*str == '-')
 	{
-		if (s[i] == '-')
-			neg *= -1;
-		i++;
+		s = -1;
+		str++;
 	}
-	while (s[i] >= '0' && s[i] <= '9')
+	else if (*str == '+')
+		str++;
+	if (ft_ifcount((char *)str, &ft_isdigit) > 18)
+		return ((s > 0) ? -1 : 0);
+	while (*str && *str >= '0' && *str <= '9')
 	{
-		result = result * 10 + s[i] - '0';
-		i++;
+		res = (res * 10) + *(str++) - '0';
+		if (res > LONG_MAX || res < LONG_MIN)
+			return ((s > 0) ? -1 : 0);
 	}
-	return (result * neg);
+	return ((int)(res * s));
 }

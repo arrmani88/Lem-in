@@ -14,9 +14,9 @@
 
 void	initialize_var(t_env *env)
 {
+	env->pth_head = NULL;
 	env->nbrooms = 0;
 	env->antsnb = 0;
-	env->pthds = NULL;
 	env->ptheads = NULL;
 	env->iteration_nb = 1;
 	env->retry = 0;

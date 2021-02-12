@@ -14,12 +14,11 @@
 
 void	allocate_path_head(t_env *env)
 {
-	t_ptheads *head;
+	t_path *head;
 
-	head = (t_ptheads *)ft_memalloc(sizeof(t_ptheads));
-	head->path = (t_path *)ft_memalloc(sizeof(t_path));
-	env->pth = head->path;
-	// env->pthds = head;
+	head = (t_path *)ft_memalloc(sizeof(t_path));
+	env->pth = head;
+	env->pth_head = head;
 }
 
 int		check_if_room_duplicated_in_both(t_path *p1, t_path *p2)
