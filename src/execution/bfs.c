@@ -79,12 +79,7 @@ int		bfs(t_env *env, int follow, t_room *start)
 			bfs_c3(env, follow, &bfs);
 			if (env->lnk->room == env->end && env->lnk->flow == follow)
 			{
-				while (bfs.first)
-				{
-					bfs.tmp = bfs.first->next;
-					ft_memdel((void **)&(bfs.first));
-					bfs.first = bfs.tmp;
-				}
+				ft_free_first(&(bfs.first));
 				return (path_generator(env, start));
 			}
 			env->lnk = env->lnk->next;
@@ -95,7 +90,5 @@ int		bfs(t_env *env, int follow, t_room *start)
 		ft_memdel((void **)&(bfs.first));
 		bfs.first = bfs.tmp;
 	}
-	if (!env->lnk)
-		return (0);
-	return (path_generator(env, start));
+	return ((!env->lnk) ? 0 : path_generator(env, start));
 }

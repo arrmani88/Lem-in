@@ -59,11 +59,6 @@ int		main(void)
 {
 	t_env		env;
 
-	// int fd = open("flow", O_RDONLY);
-	// int fd2 = open("out", O_WRONLY);
-	// dup2(fd, 0);
-	// dup2(fd2, 1);
-
 	initialize_var(&env);
 	if (!input_to_list(&env) || !save_input(&env))
 		ft_putendl_fd("ERROR", 2);
@@ -82,7 +77,6 @@ int		main(void)
 			main_c2(&env);
 		}
 	}
-	// print
 	liberate_memory(&env);
 	return (0);
 }

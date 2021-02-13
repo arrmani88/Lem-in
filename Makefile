@@ -26,7 +26,7 @@ OBJ_EXECUTION = $(addprefix $(OBJ_DIR)/, $(EXECUTION_FILES:%.c=%.o))
 OBJ_PARSER = $(addprefix $(OBJ_DIR)/, $(PARSER_FILES:%.c=%.o))
 
 CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra 
 INC = -I $(INC_DIR) -I $(LIBFT_INC)
 
 C_RED = \033[31m

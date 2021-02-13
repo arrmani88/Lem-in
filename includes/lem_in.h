@@ -184,7 +184,6 @@ int					bfs(t_env *env, int follow, t_room *start);
 t_room				*get_room(t_env *env, char *room);
 void				initialize_var(t_env *env);
 int					path_generator(t_env *env, t_room *start);
-void				delete_path_rest(t_path *ptr);
 void				set_antsnb(t_inp **inp, t_env *env);
 void				ft_calc_ants(t_env *env);
 int					ft_select_path(t_env *env, int next_len, int avg_len);
@@ -211,5 +210,6 @@ t_room				*enumerate_from_end_to_start(t_env *env, t_room *start);
 void				allocate_path_head(t_env *env);
 t_path				*allocate_pheads(t_env *env);
 void				save_head_in_new_grp(t_env *env, int total_rooms_in_path);
+void				ft_free_first(t_queue **head);
 
 #endif

@@ -25,7 +25,8 @@ t_ptheads *head, t_norm_sfcg *sfcg)
 	if (head == NULL)
 	{
 		sfcg->current_score = get_group_score(env->antsnb,
-sfcg->grp->total_rooms_in_group + total_rooms_in_path, sfcg->grp->total_heads + 1);
+sfcg->grp->total_rooms_in_group +
+total_rooms_in_path, sfcg->grp->total_heads + 1);
 		if (sfcg->current_score < sfcg->grp->score || sfcg->grp->score == 0)
 		{
 			++sfcg->is_any_path_saved;
@@ -83,18 +84,6 @@ void	path_generator_c2(t_env *env, t_norm_pg *pg)
 	}
 }
 
-/*-------------------------SUPPRIMER-------------------------*/
-void print_path(t_path *path)
-{
-	while (path)
-	{
-		printf("%s->", path->room->name);
-		path = path->next;
-	}
-	printf("\n");
-}
-/*-------------------------SUPPRIMER-------------------------*/
-
 int		path_generator(t_env *env, t_room *start)
 {
 	t_norm_pg	pg;
@@ -118,8 +107,6 @@ int		path_generator(t_env *env, t_room *start)
 		pg.rm = pg.lnk->room;
 	}
 	search_for_convenient_group(env, pg.total_rooms);
-	// printf("FOUND PATH>>>> ");
-	// print_path(env->path);
 	return (1);
 }
 

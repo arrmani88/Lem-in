@@ -17,12 +17,11 @@ void	free_rooms(t_env *env)
 	int		i;
 	t_link	*link;
 	t_room	*room;
-	char *tmp;
+	char	*tmp;
 
 	i = -1;
 	while (++i < env->nbrooms)
-	{
-		while(env->room[i])
+		while (env->room[i])
 		{
 			room = env->room[i]->next;
 			while (env->room && env->room[i] && env->room[i]->link)
@@ -38,17 +37,15 @@ void	free_rooms(t_env *env)
 			}
 			env->room[i] = room;
 		}
-	}
-	if (env->room)
-		free(env->room);
+	(env->room) ? free(env->room) : 0;
 	get_next_line(0, &tmp, 1);
 }
 
 void	liberate_memory(t_env *env)
 {
 	t_path_group	*group_tmp;
-	t_ptheads	*head_tmp;
-	t_path		*path_tmp;
+	t_ptheads		*head_tmp;
+	t_path			*path_tmp;
 
 	while (env->path_group)
 	{
@@ -56,11 +53,9 @@ void	liberate_memory(t_env *env)
 		while (env->path_group->head)
 		{
 			head_tmp = env->path_group->head->next;
-			// printf("\npath >> ");
 			while (env->path_group->head->path)
 			{
 				path_tmp = env->path_group->head->path->next;
-				// printf("%s->", env->path_group->head->path->room->name);
 				free(env->path_group->head->path);
 				env->path_group->head->path = path_tmp;
 			}
@@ -73,21 +68,6 @@ void	liberate_memory(t_env *env)
 	free_rooms(env);
 }
 
-void	delete_path_rest(t_path *ptr)
-{
-	t_path *tmp;
-	t_path *path;
-
-	path = ptr->next;
-	ptr->next = NULL;
-	while (path)
-	{
-		tmp = path->next;
-		free(path);
-		path = tmp;
-	}
-}
-
 void	ft_free_doubld_table(char ***table)
 {
 	int i;
@@ -96,4 +76,18 @@ void	ft_free_doubld_table(char ***table)
 	while ((*table)[++i])
 		free((*table)[i]);
 	free(*table);
+}
+
+void	ft_free_first(t_queue **head)
+{
+	t_queue *first;
+	t_queue *tmp;
+
+	first = *head;
+	while (first)
+	{
+		tmp = first->next;
+		ft_memdel((void **)&(first));
+		first = tmp;
+	}
 }
