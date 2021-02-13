@@ -6,7 +6,7 @@
 /*   By: anel-bou <anel-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:07:13 by youarzaz          #+#    #+#             */
-/*   Updated: 2021/02/12 18:32:43 by anel-bou         ###   ########.fr       */
+/*   Updated: 2021/02/13 16:19:45 by anel-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@ void	search4paths(t_env *env, int follow)
 {
 	while (bfs(env, follow, env->start))
 		;
-	t_path *path_tmp;
-	while(env->path)
-	{
-		path_tmp = env->path->next;
-		free(env->path);
-		env->path = path_tmp;
-	}
 	if (env->retry && !follow)
 	{
 		env->second_call = 1;
@@ -59,16 +52,16 @@ void	main_c2(t_env *env)
 	opt.antsnb = env->antsnb;
 	opt.antsnb_org = env->antsnb;
 	opt.nbrpaths = env->nbrpaths;
-	// ft_move_ants_trip(env->best_group->head, env->best_group->head, opt);
+	ft_move_ants_trip(env->best_group->head, env->best_group->head, opt);
 }
 
 int		main(void)
 {
 	t_env		env;
 
-	int fd = open("flow", O_RDONLY);
+	// int fd = open("flow", O_RDONLY);
 	// int fd2 = open("out", O_WRONLY);
-	dup2(fd, 0);
+	// dup2(fd, 0);
 	// dup2(fd2, 1);
 
 	initialize_var(&env);
@@ -83,12 +76,13 @@ int		main(void)
 		}
 		else if (env.start_end_linked)
 			set_one_path(&env);
-		// print_input(&(env.inp));
+		print_input(&(env.inp));
 		if (env.best_group && env.best_group->head && env.antsnb)
 		{
 			main_c2(&env);
 		}
 	}
+	// print
 	liberate_memory(&env);
 	return (0);
 }
